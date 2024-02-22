@@ -1,0 +1,21 @@
+package com.instituto.galton.services;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.instituto.galton.models.DetalleUsuario;
+import com.instituto.galton.repositories.DetalleUsuarioRepository;
+
+@Service
+public class DetalleUsuarioServiceImpl implements DetalleUsuarioService{
+	
+	@Autowired
+	DetalleUsuarioRepository detalleUsuarioRepository;
+
+	@Override
+	public void crearDetalleUsuario(DetalleUsuario detalleUsuario) {
+		detalleUsuarioRepository.save(detalleUsuario);
+		
+	}
+
+}

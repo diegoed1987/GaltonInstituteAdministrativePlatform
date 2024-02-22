@@ -1,6 +1,68 @@
 /*base page*/
+
+:root{
+	--side-bar-font-color: #004080;
+	--side-bar-hover-color: #4e63d7;
+}
+
 .back-content{
 	background-image: -webkit-gradient(linear, left top, right top, from(#4e63d7), to(#76bfe9)) !important;
   	background-image: linear-gradient(to right, #4e63d7 0%, #76bfe9 100%) !important;
+  	/*background-color: #DFE9F5;*/
 	background-position: center;
+	z-index: -1;
+}
+
+.escudo-logo{
+	max-width: 50px;
+	max-height: 50px;
+}
+
+#side-bar{
+	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+#side-bar-title{
+	padding-left: 10px;
+	color: var(--side-bar-font-color);
+}
+
+#inicio,
+#contabilidad,
+#estudiantes,
+#reportes,
+#configuracion{
+	color: var(--side-bar-font-color);
+	font-size: 30px;
+	padding-right: 10px;
+}
+
+.nav-link2{
+	display: flex;
+    padding: 0.5rem 1rem;
+    color: var(--side-bar-font-color);
+    text-decoration: none;
+    transition: color .1s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out;
+    align-items: center;
+}
+
+.nav-link2:hover{
+	background-color: var(--side-bar-hover-color);
+	color: #ffffff;
+}
+
+.nav-link2:hover i{
+    color: #ffffff !important; 
+}
+
+#profile-icon{
+	font-size: 30px;
+	color: var(--side-bar-font-color);
+	padding-right: 10px;
+	padding: 0.2rem 1rem;
+}
+
+#sign-out-option:hover{
+	background-color: var(--side-bar-hover-color);
+	color: #ffffff;
 }
