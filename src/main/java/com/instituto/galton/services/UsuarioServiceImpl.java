@@ -12,7 +12,7 @@ import com.instituto.galton.repositories.UsuarioRepository;
 public class UsuarioServiceImpl implements UsuarioService{
 
 	@Autowired
-	public UsuarioRepository usuarioRepository;
+	private UsuarioRepository usuarioRepository;
 	
 	@Override
 	public Usuario crearUsuario(Usuario usuario) {
@@ -23,5 +23,15 @@ public class UsuarioServiceImpl implements UsuarioService{
 	public List<Usuario> consultarUsuarios(){
 		List<Usuario> listaUsuarios = usuarioRepository.findAll();
 		return listaUsuarios;
+	}
+
+	@Override
+	public boolean validarCorreo(String email) {
+		return usuarioRepository.existsByEmail(email);
+	}
+
+	@Override
+	public boolean validarInicioSession(String email, String password) {
+		return usuarioRepository.existsByEmailAndPassword(email, password);
 	}
 }

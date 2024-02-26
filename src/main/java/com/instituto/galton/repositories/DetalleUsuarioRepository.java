@@ -7,5 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import com.instituto.galton.models.DetalleUsuario;
 
 public interface DetalleUsuarioRepository extends JpaRepository<DetalleUsuario, Integer>{
-	List<DetalleUsuario> findAll();
+	public List<DetalleUsuario> findAll();
+	public boolean existsByDocumento(int documento);
+	
 }

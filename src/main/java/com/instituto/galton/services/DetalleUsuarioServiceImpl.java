@@ -10,12 +10,17 @@ import com.instituto.galton.repositories.DetalleUsuarioRepository;
 public class DetalleUsuarioServiceImpl implements DetalleUsuarioService{
 	
 	@Autowired
-	DetalleUsuarioRepository detalleUsuarioRepository;
+	private DetalleUsuarioRepository detalleUsuarioRepository;
 
 	@Override
 	public void crearDetalleUsuario(DetalleUsuario detalleUsuario) {
 		detalleUsuarioRepository.save(detalleUsuario);
 		
+	}
+
+	@Override
+	public boolean validarDocumento(int documento) {
+		return detalleUsuarioRepository.existsByDocumento(documento);
 	}
 
 }

@@ -7,5 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import com.instituto.galton.models.Usuario;
 
 public interface UsuarioRepository extends JpaRepository<Usuario, Integer>{
-	List<Usuario> findAll();
+	public List<Usuario> findAll();
+	public boolean existsByEmail(String email);
+	public boolean existsByEmailAndPassword(String email, String password);
 }

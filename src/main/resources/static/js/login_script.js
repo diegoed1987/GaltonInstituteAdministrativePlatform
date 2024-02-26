@@ -17,14 +17,12 @@ function handleFlip() {
 btn.addEventListener('click', handleFlip)
 btn2.addEventListener('click', handleFlip)
 
-
+/*--------------- REGISTRAR USUARIO ---------------------*/
 function registerUser() {
-    var form = document.getElementById("registrationForm");
+    var form = document.getElementById("registration-form");
     var formData = new FormData(form);
-    
-    var message = document.getElementById("registrationMessage").value;
 
-    fetch('/login', {
+    fetch('/register', {
         method: 'POST',
         body: formData
     })
@@ -34,7 +32,8 @@ function registerUser() {
         Swal.fire({
             icon: data.icon,
             title: data.title,
-            text: data.text
+            text: data.text,
+            allowOutsideClick: false
         }).then(() => {
             // Redirect to login page if registration successful
             if (data.icon === 'success') {
@@ -43,6 +42,34 @@ function registerUser() {
         });
     })
 }
+
+/*--------------- INICIAR SESSION ---------------------*/
+
+function loginUser() {
+    var form = document.getElementById("login-form");
+    var formData = new FormData(form);
+
+    fetch('/login', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        // Display success or error message using SweetAlert
+        if(data.icon === "success"){
+			window.location.href = '/';
+		}else{
+			Swal.fire({
+	            icon: data.icon,
+	            title: data.title,
+	            text: data.text,
+	            allowOutsideClick: false
+	        });
+		}
+    });
+}
+
+/*--------------- HABITILAR E INHALITAR BOTON FORMULARIOS ---------------------*/
 
 const registerBtn = document.getElementById("register-btn");
 const documento = document.getElementById("documento");
@@ -82,5 +109,19 @@ function enableLoginButton(){
 usuario.onchange = function() {enableLoginButton()};
 loginPass.onchange = function() {enableLoginButton()};
 
+
+
+
+/*--------------- MANEJO DE MODAL ---------------------*/
+
+var modal = document.getElementById("solicitudPasswordModal");
+
+function abrirModal() {
+  modal.style.display = "block";
+}
+
+function cerrarModal() {
+  modal.style.display = "none";
+}
 
 
