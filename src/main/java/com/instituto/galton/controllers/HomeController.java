@@ -163,4 +163,13 @@ public class HomeController {
 	public String administracion() {
 		return "administracion";
 	}
+	
+	@PostMapping("/crearUsuario")
+	public Alert creaUsuarioModal() {
+		Alert alert = new Alert();
+		alert.setTitle("Registro de Usuario");
+		alert.setText("El usuario ha sido registrado existosamente.");
+		alert.setIcon("success");
+		return alert;
+	}
 }

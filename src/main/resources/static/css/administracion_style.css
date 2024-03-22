@@ -1,3 +1,9 @@
+:root{
+	--card-hover-background: #3066BE;
+	--card-icon-color: #004080;
+	--card-icon-hover-color: #FFFFFF;
+}
+
 section{
 	height: 100%;
 }
@@ -6,10 +12,11 @@ section{
 	display: grid;
 	grid-template-columns: repeat(3, 200px);
 	grid-template-rows: 2;
-	justify-content: center;
-	row-gap: 20px;
-	column-gap: 200px;
-	margin-left: -100px;
+	/*justify-content: center;*/
+	row-gap: 30px;
+	column-gap: 150px;
+	/*margin-left: -100px;*/
+	margin-left: 80px;
 	padding-top: 100px;
 }
 
@@ -17,8 +24,83 @@ section{
 	background-color: #FFFFFF;
 	width: 300px;
 	height: 200px;
+	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+	border-radius: 3%;
 }
 
 .card2:hover{
-	background-color: #808080;
+	background-color: var(--card-hover-background);
+}
+
+.card-icon {
+    text-align: center;
+    margin-bottom: 20px; /* Add margin for spacing */
+}
+
+.card-icon i {
+	color: var(--card-icon-color);
+    font-size: 90px; /* Adjust icon size as needed */
+}
+
+.card-icon p{
+	font-size: 20px;
+	color: var(--card-icon-color);
+}
+
+.card2:hover i{
+	color: var(--card-icon-hover-color) !important;
+}
+
+.card2:hover p{
+	color: var(--card-icon-hover-color) !important;
+}
+/*-------------------------------------- MODAL ---------------------------------------------------*/
+
+.modal {
+	display: none;
+	left: 0;
+	top: 0;
+	width: 50%;
+	height: 50%;
+	overflow: auto;
+	background-color: rgb(0,0,0);
+	background-color: rgba(0,0,0,0.4);
+	animation:fadein .5s;
+}
+
+.modal-content1 {
+	background-color: #FFFFFF;
+	margin: 15% auto;
+	padding: 25px;
+	width: 30%;
+	border-radius: 5px;
+}
+
+.text-modal{
+	text-align: center;
+}
+
+.form-modal{
+	margin-top: 20px;
+}
+
+.buttons-modal{
+	display: grid;
+	grid-template-columns: repeat(1, 20%);
+	justify-content: center;
+	padding-top: 5px;
+	row-gap: 10px;
+}
+
+#cancelar-modal{
+	padding-left: 10%;
+}
+
+@keyframes fadein {
+	from {
+		opacity:0;
+	}
+	to {
+		opacity:1;
+	}
 }

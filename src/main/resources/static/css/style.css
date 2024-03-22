@@ -3,6 +3,8 @@
 :root{
 	--side-bar-font-color: #004080;
 	--side-bar-hover-color: #4e63d7;
+	--bs-gutter-x: 1.5rem;
+	--bs-gutter-y: 0;
 }
 
 .back-content{
@@ -65,4 +67,16 @@
 #sign-out-option:hover{
 	background-color: var(--side-bar-hover-color);
 	color: #ffffff;
+}
+
+.row2{
+	--bs-gutter-x: 1.5rem;
+    --bs-gutter-y: 0;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: calc(-1 * var(--bs-gutter-y));
+    margin-right: calc(-.5 * var(--bs-gutter-x));
+    margin-left: calc(-.5 * var(--bs-gutter-x));
+    position: relative;
+    z-index: 1;
 }
