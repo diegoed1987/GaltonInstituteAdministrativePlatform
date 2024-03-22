@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.instituto.galton.dtos.EmailDTO;
 import com.instituto.galton.dtos.LoginDTO;
+import com.instituto.galton.dtos.PasswordRecoveryDTO;
 import com.instituto.galton.dtos.RegistroDTO;
 import com.instituto.galton.helpers.Alert;
 import com.instituto.galton.models.DetalleDominio;
@@ -67,7 +68,7 @@ public class HomeController {
 					if(usuario.getId() > 0) {
 						
 						DetalleUsuario detalleUsuario = new DetalleUsuario();
-						detalleUsuario.setId_usuario(usuario.getId());
+						detalleUsuario.setIdUsuario(usuario.getId());
 						detalleUsuario.setDocumento(Integer.parseInt(registroDTO.getDocumento()));
 						detalleUsuario.setNombre(registroDTO.getNombre());
 						
@@ -124,18 +125,42 @@ public class HomeController {
 	}
 	
 	@PostMapping("/requestPassword")
-	public String solicitarContrasena(String email) {
+	@ResponseBody
+	public Alert solicitarContrasena(@ModelAttribute("PasswordRecoveryDTO") PasswordRecoveryDTO passwordRecoveryDTO) {
 		
+		Alert alert = new Alert();
 		DetalleDominio detalleDominio = detalleDominioService.consultaDominio("EMAIL", "MENSAJE_DE_CORREO");
-		String textoEmail = detalleDominio.getValorDetalle().replace("#password", "oceano121*") ;
-		textoEmail = textoEmail.replace("#UserName", "Diego Erazo");
+
+		if(usuarioService.validarCorreo(passwordRecoveryDTO.getEmailModal())) {
+			
+			Usuario usuario = usuarioService.buscarUsuarioPorCorreo(passwordRecoveryDTO.getEmailModal());
+			DetalleUsuario detalleUsuario = detalleUsuarioService.extraerDetallesUsuarioPorIdUsuario(usuario.getId());
+			
+			String textoEmail = detalleDominio.getValorDetalle().replace("#password", usuario.getPassword()) ;
+			textoEmail = textoEmail.replace("#UserName", detalleUsuario.getNombre());
+			
+			EmailDTO emailDTO = new EmailDTO();
+			emailDTO.setEmailTo(passwordRecoveryDTO.getEmailModal());
+			emailDTO.setEmailSubject("Recuperación de Contraseña");
+			emailDTO.setEmailText(textoEmail);
+			emailService.sendSimpleMessage(emailDTO);
+			
+			alert.setTitle("Recuperación de Contraseña");
+			alert.setText("Se ha enviado tu contraseña correctamente a tu correo electrónico");
+			alert.setIcon("success");
+			
+		}else {
+			alert.setTitle("Recuperación de Contraseña");
+			alert.setText("El correo ingresado no existe.");
+			alert.setIcon("error");
+		}
 		
-		EmailDTO emailDTO = new EmailDTO();
-		emailDTO.setEmailTo("diegoerazo.121@gmail.com");
-		emailDTO.setEmailSubject("Recuperación de Contraseña");
-		emailDTO.setEmailText(textoEmail);
-		emailService.sendSimpleMessage(emailDTO);
-		
-		return "redirect:/login";
+		return alert;
+
+	}
+	
+	@GetMapping("/administracion")
+	public String administracion() {
+		return "administracion";
 	}
 }

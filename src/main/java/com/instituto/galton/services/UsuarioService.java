@@ -10,4 +10,5 @@ public interface UsuarioService {
 	public List<Usuario> consultarUsuarios();
 	public boolean validarCorreo(String email);
 	public boolean validarInicioSession(String email, String password);
+	public Usuario buscarUsuarioPorCorreo(String email);
 }

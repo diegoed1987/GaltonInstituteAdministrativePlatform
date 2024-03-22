@@ -23,4 +23,9 @@ public class DetalleUsuarioServiceImpl implements DetalleUsuarioService{
 		return detalleUsuarioRepository.existsByDocumento(documento);
 	}
 
+	@Override
+	public DetalleUsuario extraerDetallesUsuarioPorIdUsuario(int idUsuario) {
+		return detalleUsuarioRepository.findByIdUsuario(idUsuario);
+	}
+
 }

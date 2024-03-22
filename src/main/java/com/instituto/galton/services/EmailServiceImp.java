@@ -3,6 +3,7 @@ package com.instituto.galton.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import com.instituto.galton.dtos.EmailDTO;
@@ -15,7 +16,8 @@ public class EmailServiceImp {
 	
 	@Autowired
     private JavaMailSender emailSender;
-
+	
+	@Async
     public void sendSimpleMessage(EmailDTO emailDTO) {
         MimeMessage message = emailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message, "utf-8");

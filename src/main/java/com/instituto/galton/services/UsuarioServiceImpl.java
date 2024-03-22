@@ -34,4 +34,9 @@ public class UsuarioServiceImpl implements UsuarioService{
 	public boolean validarInicioSession(String email, String password) {
 		return usuarioRepository.existsByEmailAndPassword(email, password);
 	}
+
+	@Override
+	public Usuario buscarUsuarioPorCorreo(String email) {
+		return usuarioRepository.findByEmail(email);
+	}
 }

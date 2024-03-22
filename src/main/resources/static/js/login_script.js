@@ -28,14 +28,12 @@ function registerUser() {
     })
     .then(response => response.json())
     .then(data => {
-        // Display success or error message using SweetAlert
         Swal.fire({
             icon: data.icon,
             title: data.title,
             text: data.text,
             allowOutsideClick: false
         }).then(() => {
-            // Redirect to login page if registration successful
             if (data.icon === 'success') {
                 window.location.href = '/login';
             }
@@ -55,7 +53,6 @@ function loginUser() {
     })
     .then(response => response.json())
     .then(data => {
-        // Display success or error message using SweetAlert
         if(data.icon === "success"){
 			window.location.href = '/';
 		}else{
@@ -117,11 +114,34 @@ loginPass.onchange = function() {enableLoginButton()};
 var modal = document.getElementById("solicitudPasswordModal");
 
 function abrirModal() {
-  modal.style.display = "block";
+	modal.style.display = "block";
 }
 
 function cerrarModal() {
-  modal.style.display = "none";
+	modal.style.display = "none";
 }
 
+/*--------------- ENVIO DE CONTRASEÑA ---------------------*/
 
+function recuperarContrasena(){
+	var form = document.getElementById("password-recovery-form");
+	var formData = new FormData(form);
+	
+	fetch('/requestPassword', {
+        method: 'POST',
+        body: formData
+    })
+	.then(response => response.json())
+    .then(data => {
+        Swal.fire({
+            icon: data.icon,
+            title: data.title,
+            text: data.text,
+            allowOutsideClick: false
+        }).then(() => {
+            if (data.icon === 'success') {
+                window.location.href = '/login';
+            }
+        });
+    })
+}

@@ -115,13 +115,13 @@
 	<!---------------- Modal Recuperar Contraseña -------------->
 	<div id="solicitudPasswordModal" class="modal">
 		<div class="modal-content1">
-		    <form th:action="@{/requestPassword}" method="post">
+		    <form action="#" method="post" id="password-recovery-form" th:onsubmit="recuperarContrasena(); return false;">
 		    	<p class="text-modal">Por favor, introduce nuevamente tu correo para recuperar contraseña</p>
 		        <div class="input-group mb-3 form-modal">
 					<div class="input-group-append">
 						<span class="input-group-text"><i class="bi bi-envelope-fill"></i></span>
 					</div>
-					<input type="text" name="email-modal" class="form-control" placeholder="Correo" id="email-modal" required>
+					<input type="text" name="emailModal" class="form-control" placeholder="Correo" id="email-modal" required>
 				</div>
 				<div class="buttons-modal">
 					<button type="submit" class="btn register_btn">Enviar</button>

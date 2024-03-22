@@ -19,7 +19,7 @@ public class DetalleUsuario {
 	private int id;
 	
 	@Column(name = "ID_USUARIO")
-	private int id_usuario;
+	private int idUsuario;
 	
 	@Column(name = "DOCUMENTO")
 	private int documento;
@@ -50,12 +50,12 @@ public class DetalleUsuario {
 		this.id = id;
 	}
 
-	public int getId_usuario() {
-		return id_usuario;
+	public int getIdUsuario() {
+		return idUsuario;
 	}
 
-	public void setId_usuario(int id_usuario) {
-		this.id_usuario = id_usuario;
+	public void setIdUsuario(int idUsuario) {
+		this.idUsuario = idUsuario;
 	}
 
 	public int getDocumento() {
@@ -116,7 +116,7 @@ public class DetalleUsuario {
 
 	@Override
 	public String toString() {
-		return "DetalleUsuario [id=" + id + ", id_usuario=" + id_usuario + ", documento=" + documento + ", nombre="
+		return "DetalleUsuario [id=" + id + ", idUsuario=" + idUsuario + ", documento=" + documento + ", nombre="
 				+ nombre + ", fechaNacimiento=" + fechaNacimiento + ", direccion=" + direccion + ", telefono="
 				+ telefono + ", fechaCreacion=" + fechaCreacion + ", fechaModificacion=" + fechaModificacion + "]";
 	}
