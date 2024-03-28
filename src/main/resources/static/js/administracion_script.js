@@ -1,6 +1,6 @@
 const cardButton = document.getElementById("cardCreateUser");
 
-cardButton.addEventListener("click",abrirModal);
+cardButton.addEventListener("click", abrirModal);
 
 
 var modal = document.getElementById("administrarUsuarioModal");

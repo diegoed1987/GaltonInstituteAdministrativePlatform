@@ -15,7 +15,7 @@ public class Factura {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int idfactura;
+	private int idFactura;
 	
 	@Column (name= "ID_PAGADOR")
 	private int idPagador;
@@ -58,11 +58,11 @@ public class Factura {
 	}
 
 	public int getIdfactura() {
-		return idfactura;
+		return idFactura;
 	}
 
 	public void setIdfactura(int idfactura) {
-		this.idfactura = idfactura;
+		this.idFactura = idfactura;
 	}
 
 	public int getIdPagador() {
@@ -155,7 +155,7 @@ public class Factura {
 
 	@Override
 	public String toString() {
-		return "Factura [idfactura=" + idfactura + ", idPagador=" + idPagador + ", nombrePagador=" + nombrePagador
+		return "Factura [idfactura=" + idFactura + ", idPagador=" + idPagador + ", nombrePagador=" + nombrePagador
 				+ ", idPeriodo=" + idPeriodo + ", idPrograma=" + idPrograma + ", fechaFactura=" + fechaFactura
 				+ ", concepto=" + concepto + ", observaciones=" + observaciones + ", valorRecaudado=" + valorRecaudado
 				+ ", valorLetra=" + valorLetra + ", mediosPago=" + mediosPago + ", idBanco=" + idBanco + "]";

@@ -19,12 +19,12 @@ public class BancoServiceImpl implements BancoService{
 
 	@Override
 	public boolean validarBanco(int id) {
-		return bancoRepository.existsByBanco(id);
+		return bancoRepository.existsById(id);
 	}
 
 	@Override
 	public Banco extraerBancoIdBanco(int id) {
-		return bancoRepository.findByIdBanco(id);
+		return bancoRepository.findById(id);
 	}
 
 }

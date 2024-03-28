@@ -158,18 +158,4 @@ public class HomeController {
 		return alert;
 
 	}
-	
-	@GetMapping("/administracion")
-	public String administracion() {
-		return "administracion";
-	}
-	
-	@PostMapping("/crearUsuario")
-	public Alert creaUsuarioModal() {
-		Alert alert = new Alert();
-		alert.setTitle("Registro de Usuario");
-		alert.setText("El usuario ha sido registrado existosamente.");
-		alert.setIcon("success");
-		return alert;
-	}
 }

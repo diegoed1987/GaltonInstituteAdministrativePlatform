@@ -22,7 +22,7 @@ public class ProgramaServiceImpl implements ProgramaService{
 
 	@Override
 	public boolean validarPrograma(int idPrograma) {
-		return programaRepository.existsByPrograma(idPrograma);
+		return programaRepository.existsByIdPrograma(idPrograma);
 	}
 
 	@Override

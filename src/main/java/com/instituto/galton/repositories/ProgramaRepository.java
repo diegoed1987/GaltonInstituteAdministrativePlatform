@@ -11,7 +11,7 @@ public interface ProgramaRepository extends JpaRepository<Programa, Integer>{
 	
 	public List<Programa> findAll();
 	public Programa findByIdPrograma(int idPrograma);
-	public boolean existsByPrograma(int idPrograma);
+	public boolean existsByIdPrograma(int idPrograma);
 	
 	public Programa findByNombrePrograma(String nombrePrograma);
 	public boolean existsByNombrePrograma(String nombrePrograma);

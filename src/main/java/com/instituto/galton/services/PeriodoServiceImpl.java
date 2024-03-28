@@ -20,12 +20,12 @@ public class PeriodoServiceImpl implements PeriodoService {
 
 	@Override
 	public boolean validarPeriodo(int id) {
-		return periodoRepository.existsByPeriodo(id);
+		return periodoRepository.existsById(id);
 	}
 
 	@Override
 	public Periodo extraerPeriodoIdPeriodo(int id) {
-		return periodoRepository.findByIdPeriodo(id);
+		return periodoRepository.findById(id);
 	}
 	
 	
