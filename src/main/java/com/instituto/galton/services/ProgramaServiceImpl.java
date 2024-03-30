@@ -30,4 +30,24 @@ public class ProgramaServiceImpl implements ProgramaService{
 		return programaRepository.findByIdPrograma(idPrograma);
 	}
 
+	@Override
+	public Iterable<Programa> getProgramas() {
+		return programaRepository.findAll();
+	}
+
+	@Override
+	public String getNombrePrograma(Iterable<Programa> programas, int programaSeleccionado) {
+		
+		String nombrePrograma = "";
+		
+		for(Programa item : programas) {
+			if(item.getIdPrograma() == programaSeleccionado) {
+				nombrePrograma = item.getNombreCortoPrograma();
+				break;
+			}
+		}
+		
+		return nombrePrograma;
+	}
+
 }

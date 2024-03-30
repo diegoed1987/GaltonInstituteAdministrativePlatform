@@ -28,7 +28,7 @@
 				<div>
 					<div>
 						<h3>Generar Nueva Factura</h3>
-						<p>Factura #15</p>
+						<p><span th:text="${maxId}"></span></p>
 					</div>
 				</div>
 				<form class="row g-3" th:action="@{/generarFactura}" th:object="${generarFacturaDTO}" method="post" id="generarFacturaForm" th:onsubmit="cerrarModal()">

@@ -42,16 +42,15 @@ public class JasperReportsServiceImpl implements JasperReportsService{
         params.put("periodo", generarFacturaDTO.getPeriodo());
         params.put("nombrePagador", generarFacturaDTO.getNombrePagador());
         params.put("documentoPagador", generarFacturaDTO.getDocumentoPagador());
-        params.put("fechaRecibo", date.toString());
-        params.put("numeroRecibo", "15");
+        params.put("fechaRecibo", generarFacturaDTO.getFechaRecibo());
         params.put("concepto", generarFacturaDTO.getConcepto());
         params.put("observaciones", generarFacturaDTO.getObservaciones());
         params.put("medioPago", generarFacturaDTO.getMedioPago());
         params.put("valorLetra", generarFacturaDTO.getValorLetra());
         params.put("valorRecaudado", generarFacturaDTO.getValorRecaudado());
         params.put("banco", generarFacturaDTO.getBanco());
-        params.put("email", "galton@gmail.com");
-        params.put("telefono", "3152634565");
+        params.put("email", generarFacturaDTO.getEmail());
+        params.put("telefono", generarFacturaDTO.getTelefono());
         
         JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(List.of(params));
 

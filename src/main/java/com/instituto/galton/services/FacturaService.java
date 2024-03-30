@@ -7,5 +7,5 @@ public interface FacturaService  {
 	public void crearFactura(Factura factura);
 	public boolean validarFactura(int idFactura);
 	public Factura extraerFacturaPorIdFactura(int idFactura);
-
+	public String getMaxFacturaId();
 }

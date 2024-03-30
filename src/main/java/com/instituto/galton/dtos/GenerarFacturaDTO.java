@@ -12,14 +12,19 @@ public class GenerarFacturaDTO {
 	private String medioPago;
 	private String banco;
 	private String observaciones;
+	private String fechaRecibo;
+	private String numeroRecibo;
+	private String email;
+	private String telefono;
 	
 	public GenerarFacturaDTO() {
+		super();
 	}
-
+	
 	public GenerarFacturaDTO(String documentoPagador, String nombrePagador, String periodo, String programa,
 			String concepto, String valorRecaudado, String valorLetra, String medioPago, String banco,
-			String observaciones) {
-		
+			String observaciones, String fechaRecibo, String numeroRecibo, String email, String telefono) {
+		super();
 		this.documentoPagador = documentoPagador;
 		this.nombrePagador = nombrePagador;
 		this.periodo = periodo;
@@ -30,6 +35,10 @@ public class GenerarFacturaDTO {
 		this.medioPago = medioPago;
 		this.banco = banco;
 		this.observaciones = observaciones;
+		this.fechaRecibo = fechaRecibo;
+		this.numeroRecibo = numeroRecibo;
+		this.email = email;
+		this.telefono = telefono;
 	}
 	
 	public String getDocumentoPagador() {
@@ -112,11 +121,44 @@ public class GenerarFacturaDTO {
 		this.observaciones = observaciones;
 	}
 	
+	public String getFechaRecibo() {
+		return fechaRecibo;
+	}
+	
+	public void setFechaRecibo(String fechaRecibo) {
+		this.fechaRecibo = fechaRecibo;
+	}
+	
+	public String getNumeroRecibo() {
+		return numeroRecibo;
+	}
+	
+	public void setNumeroRecibo(String numeroRecibo) {
+		this.numeroRecibo = numeroRecibo;
+	}
+	
+	public String getEmail() {
+		return email;
+	}
+	
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	
+	public String getTelefono() {
+		return telefono;
+	}
+	
+	public void setTelefono(String telefono) {
+		this.telefono = telefono;
+	}
+	
 	@Override
 	public String toString() {
 		return "GenerarFacturaDTO [documentoPagador=" + documentoPagador + ", nombrePagador=" + nombrePagador
 				+ ", periodo=" + periodo + ", programa=" + programa + ", concepto=" + concepto + ", valorRecaudado="
 				+ valorRecaudado + ", valorLetra=" + valorLetra + ", medioPago=" + medioPago + ", banco=" + banco
-				+ ", observaciones=" + observaciones + "]";
+				+ ", observaciones=" + observaciones + ", fechaRecibo=" + fechaRecibo + ", numeroRecibo=" + numeroRecibo
+				+ ", email=" + email + ", telefono=" + telefono + "]";
 	}
 }

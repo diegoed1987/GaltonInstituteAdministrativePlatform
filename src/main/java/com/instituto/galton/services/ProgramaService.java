@@ -7,5 +7,7 @@ public interface ProgramaService {
 	public void crearPrograma(Programa programa);
 	public boolean validarPrograma(int idPrograma);
 	public Programa extraerProgramaIdPrograma(int idPrograma);
+	public Iterable<Programa> getProgramas();
+	public String getNombrePrograma(Iterable<Programa> programas, int programaSeleccionado);
 
 }

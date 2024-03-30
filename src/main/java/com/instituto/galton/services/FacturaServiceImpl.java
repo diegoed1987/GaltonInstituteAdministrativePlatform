@@ -1,6 +1,7 @@
 package com.instituto.galton.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import com.instituto.galton.models.Factura;
@@ -13,9 +14,9 @@ public class FacturaServiceImpl implements FacturaService{
 	private FacturaRepository facturaRepository;
 	
 	@Override
+	@Async
 	public void crearFactura(Factura factura) {
 		facturaRepository.save(factura);
-		
 	}
 
 	@Override
@@ -26,6 +27,11 @@ public class FacturaServiceImpl implements FacturaService{
 	@Override
 	public Factura extraerFacturaPorIdFactura(int idFactura) {
 		return facturaRepository.findByIdFactura(idFactura);
+	}
+
+	@Override
+	public String getMaxFacturaId() {
+		return String.valueOf(facturaRepository.getMaxId());
 	}
 
 }

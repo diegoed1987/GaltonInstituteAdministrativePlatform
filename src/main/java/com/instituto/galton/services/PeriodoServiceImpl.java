@@ -15,7 +15,6 @@ public class PeriodoServiceImpl implements PeriodoService {
 	@Override
 	public void crearPeriodo(Periodo periodo) {
 		periodoRepository.save(periodo);
-		
 	}
 
 	@Override
@@ -26,6 +25,26 @@ public class PeriodoServiceImpl implements PeriodoService {
 	@Override
 	public Periodo extraerPeriodoIdPeriodo(int id) {
 		return periodoRepository.findById(id);
+	}
+
+	@Override
+	public Iterable<Periodo> getPeriodos() {
+		return periodoRepository.findAll();
+	}
+
+	@Override
+	public String getNombrePeriodo(Iterable<Periodo> periodos, int periodoSeleccionado) {
+		
+		String nombrePeriodo = "";
+		
+		for(Periodo item: periodos) {
+			if(item.getId() == periodoSeleccionado) {
+				nombrePeriodo = item.getNombreCortoPeriodo();
+				break;
+			}
+		}
+		
+		return nombrePeriodo;
 	}
 	
 	

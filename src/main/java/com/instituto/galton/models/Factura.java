@@ -1,6 +1,6 @@
 package com.instituto.galton.models;
 
-import java.sql.Date;
+import java.util.Date;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -15,6 +15,7 @@ public class Factura {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column (name= "ID_FACTURA")
 	private int idFactura;
 	
 	@Column (name= "ID_PAGADOR")
