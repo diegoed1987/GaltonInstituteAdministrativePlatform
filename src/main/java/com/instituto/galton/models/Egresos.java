@@ -45,7 +45,7 @@ public class Egresos {
 	@Column (name= "VALOR_EGRESO")
 	private float valorEgreso;
 	
-	@Column (name= "VALOR_LETRA")
+	@Column (name= "VALOR_LETRAS")
 	private String valorLetra;
 	
 	@Column (name= "DESCRIPCION_EGRESO")

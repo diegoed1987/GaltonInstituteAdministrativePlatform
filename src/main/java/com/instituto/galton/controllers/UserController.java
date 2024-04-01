@@ -173,7 +173,6 @@ public class UserController {
         return ResponseEntity.ok(mensaje);
 	}
 	
-	
 	@PostMapping("/generarEgreso")
 	public ResponseEntity<String> generarEgreso(@ModelAttribute("generarEgresoDTO") GenerarEgresoDTO generarEgresoDTO, HttpServletResponse response, Model model) throws IOException{
 		
@@ -186,9 +185,14 @@ public class UserController {
 		String fechaEgreso = simpleDateFormat.format(date);
 
 		Egresos egresos = new Egresos();
+	
+
+		
 		if (!generarEgresoDTO.getIdBanco().isBlank()) {
 			egresos.setIdBanco(Integer.parseInt(generarEgresoDTO.getIdBanco()));
 		}
+		
+		
 		egresos.setDescripcionEgreso(generarEgresoDTO.getDescripcionEgreso());
 		egresos.setFechaEgreso(date);
 		egresos.setIdBeneficiario(Integer.parseInt(generarEgresoDTO.getIdBeneficiario()));
@@ -209,6 +213,8 @@ public class UserController {
 		
 		egresoService.crearEgreso(egresos);
 
+		
+		
 		generarEgresoDTO.setFechaEgreso(fechaEgreso);
 		generarEgresoDTO.setNumeroEgreso(String.valueOf(numEgreso));
 		generarEgresoDTO.setNit("913434489-0");
