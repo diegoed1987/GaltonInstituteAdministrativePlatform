@@ -13,6 +13,7 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ResourceUtils;
 
+import com.instituto.galton.dtos.GenerarEgresoDTO;
 import com.instituto.galton.dtos.GenerarFacturaDTO;
 import com.instituto.galton.models.Usuario;
 
@@ -58,5 +59,37 @@ public class JasperReportsServiceImpl implements JasperReportsService{
 
         return JasperExportManager.exportReportToPdf(jasperPrint);
 	}
+	
+public byte[] generarEgreso(GenerarEgresoDTO generarEgresoDTO, String nombreReporte) throws JRException, IOException {
+		
+		ClassPathResource resource = new ClassPathResource("reports/" + nombreReporte + ".jasper");
+		
+		JasperReport jasperReport = (JasperReport) JRLoader.loadObject(resource.getInputStream());
+        
+        Date date = new Date();
+        
+        Map<String, Object> params = new HashMap<String, Object>();
+        
+        params.put("nitBeneficiario", generarEgresoDTO.getIdBeneficiario());
+        params.put("nombreBeneficiario", generarEgresoDTO.getNombreBeneficiario());
+        params.put("direccionBeneficiario", generarEgresoDTO.getDireccionBeneficiario());
+        params.put("telefonoBeneficiario", generarEgresoDTO.getTelefonoBeneficiario());
+        params.put("ciudadBeneficiario", generarEgresoDTO.getCiudadBeneficiario());
+        params.put("bancoBeneficiario", generarEgresoDTO.getIdBanco());
+        params.put("fechaComprobante", generarEgresoDTO.getFechaEgreso());
+        params.put("valorComprobante", generarEgresoDTO.getValorEgreso());
+        params.put("valorLetrasComprobante", generarEgresoDTO.getValorLetra());
+        params.put("descripcionComprobante", generarEgresoDTO.getDescripcionEgreso());
+        params.put("observacionesComprobante", generarEgresoDTO.getObservacionesEgreso());
+        params.put("nit", generarEgresoDTO.getNit());
+        params.put("direccion", generarEgresoDTO.getDireccion());
+        
+        JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(List.of(params));
+
+        JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, params, dataSource);
+
+        return JasperExportManager.exportReportToPdf(jasperPrint);
+	}
+
 
 }

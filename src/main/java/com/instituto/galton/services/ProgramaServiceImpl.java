@@ -42,7 +42,7 @@ public class ProgramaServiceImpl implements ProgramaService{
 		
 		for(Programa item : programas) {
 			if(item.getIdPrograma() == programaSeleccionado) {
-				nombrePrograma = item.getNombreCortoPrograma();
+				nombrePrograma = item.getNombrePrograma();
 				break;
 			}
 		}
