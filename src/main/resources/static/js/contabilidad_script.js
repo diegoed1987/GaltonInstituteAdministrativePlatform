@@ -1,15 +1,20 @@
-const cardContabilidad = document.getElementById("generarFactura");
+const cardGenerarFactura = document.getElementById("generarFactura");
 const generarFacturaModal = document.getElementById("generarFacturaModal");
 const generarFacturaForm = document.getElementById("generarFacturaForm");
+
+const cardGenerarEgreso = document.getElementById("generarEgreso");
+const generarEgresoModal = document.getElementById("generarEgresoModal");
+const generarEgresoForm = document.getElementById("generarEgresoForm");
 const hiddenItem = document.getElementById("mensajeOculto");
 
-cardContabilidad.addEventListener("click", abrirModal);
+cardGenerarFactura.addEventListener("click", abrirModalFactura);
+cardGenerarEgreso.addEventListener("click", abrirModalEgreso);
 
-function abrirModal(){
+function abrirModalFactura(){
 	generarFacturaModal.style.display = "block";
 }
 
-function cerrarModal() {
+function cerrarModalFactura() {
 //	setTimeout(function() {
 //		generarFacturaModal.style.display = "none";
 //        generarFacturaForm.reset();
@@ -21,7 +26,35 @@ function cerrarModal() {
 	console.log("ITEM: "+hiddenItem.value);
 }
 
-function cancelarModal() {
+function cancelarModalFactura() {
 	generarFacturaModal.style.display = "none";
 	generarFacturaForm.reset();
+}
+
+
+
+
+
+
+
+
+function abrirModalEgreso(){
+	generarEgresoModal.style.display = "block";
+}
+
+function cerrarModalEgreso() {
+//	setTimeout(function() {
+//		generarFacturaModal.style.display = "none";
+//        generarFacturaForm.reset();
+//		fetch('/contabilidad', {
+//	        method: 'GET'
+//	    })
+//    }, 1000);
+
+	console.log("ITEM: "+hiddenItem.value);
+}
+
+function cancelarModalEgreso() {
+	generarEgresoModal.style.display = "none";
+	generarEgresoForm.reset();
 }

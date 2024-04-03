@@ -99,7 +99,7 @@ public class UserController {
 		model.addAttribute("programas",programas);
 		model.addAttribute("periodos",periodos);
 		model.addAttribute("maxId", numeroFactura);
-		model.addAttribute("maxId", numeroEgreso);
+		model.addAttribute("maxIdEgreso", numeroEgreso);
 		return "contabilidad";
 	}
 	
