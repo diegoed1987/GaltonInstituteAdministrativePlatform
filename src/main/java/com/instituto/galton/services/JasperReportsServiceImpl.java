@@ -70,6 +70,8 @@ public byte[] generarEgreso(GenerarEgresoDTO generarEgresoDTO, String nombreRepo
         
         Map<String, Object> params = new HashMap<String, Object>();
         
+        
+        params.put("numeroComprobante", generarEgresoDTO.getNumeroComprobante());
         params.put("nitBeneficiario", generarEgresoDTO.getIdBeneficiario());
         params.put("nombreBeneficiario", generarEgresoDTO.getNombreBeneficiario());
         params.put("direccionBeneficiario", generarEgresoDTO.getDireccionBeneficiario());
@@ -78,6 +80,7 @@ public byte[] generarEgreso(GenerarEgresoDTO generarEgresoDTO, String nombreRepo
         params.put("bancoBeneficiario", generarEgresoDTO.getIdBanco());
         params.put("fechaComprobante", generarEgresoDTO.getFechaEgreso());
         params.put("valorComprobante", generarEgresoDTO.getValorEgreso());
+        params.put("mediosPago", generarEgresoDTO.getMedioPago());
         params.put("valorLetrasComprobante", generarEgresoDTO.getValorLetra());
         params.put("descripcionComprobante", generarEgresoDTO.getDescripcionEgreso());
         params.put("observacionesComprobante", generarEgresoDTO.getObservacionesEgreso());

@@ -2,20 +2,19 @@ package com.instituto.galton.dtos;
 
 public class GenerarEgresoDTO {
 	
-	private String idEgreso;
+	private String numeroComprobante;
 	private String idBeneficiario;
 	private String nombreBeneficiario;
 	private String direccionBeneficiario;
 	private String telefonoBeneficiario;
 	private String ciudadBeneficiario;
-	private String mediosPago;
+	private String medioPago;
 	private String idBanco;
 	private String fechaEgreso;
 	private String valorEgreso;
 	private String valorLetra;
 	private String descripcionEgreso;
 	private String observacionesEgreso;
-	private String numeroEgreso;
 	private String nit;
 	private String direccion;
 	
@@ -27,36 +26,35 @@ public class GenerarEgresoDTO {
 	
 	
 	
-	public GenerarEgresoDTO(String idEgreso, String idBeneficiario, String nombreBeneficiario, String direccionBeneficiario,
+	public GenerarEgresoDTO(String numeroComprobante, String idBeneficiario, String nombreBeneficiario, String direccionBeneficiario,
 			String telefonoBeneficiario, String ciudadBeneficiario, String mediosPago, String idBanco,
 			String fechaEgreso, String valorEgreso, String valorLetra, String descripcionEgreso,
-			String observacionesEgreso, String numeroEgreso,String nit, String direccion) {
+			String observacionesEgreso, String nit, String direccion) {
 		super();
-		this.idEgreso = idEgreso;
+		this.numeroComprobante = numeroComprobante;
 		this.idBeneficiario = idBeneficiario;
 		this.nombreBeneficiario = nombreBeneficiario;
 		this.direccionBeneficiario = direccionBeneficiario;
 		this.telefonoBeneficiario = telefonoBeneficiario;
 		this.ciudadBeneficiario = ciudadBeneficiario;
-		this.mediosPago = mediosPago;
+		this.medioPago = medioPago;
 		this.idBanco = idBanco;
 		this.fechaEgreso = fechaEgreso;
 		this.valorEgreso = valorEgreso;
 		this.valorLetra = valorLetra;
 		this.descripcionEgreso = descripcionEgreso;
 		this.observacionesEgreso = observacionesEgreso;
-		this.numeroEgreso = numeroEgreso;
 		this.nit = nit;
 		this.direccion = direccion;
 	}
 
 
 
-	public String getIdEgreso() {
-		return idEgreso;
+	public String getNumeroComprobante() {
+		return numeroComprobante;
 	}
-	public void setIdEgreso(String idEgreso) {
-		this.idEgreso = idEgreso;
+	public void setNumeroComprobante(String numeroComprobante) {
+		this.numeroComprobante = numeroComprobante;
 	}
 	
 	public String getIdBeneficiario() {
@@ -90,11 +88,11 @@ public class GenerarEgresoDTO {
 	public void setCiudadBeneficiario(String ciudadBeneficiario) {
 		this.ciudadBeneficiario = ciudadBeneficiario;
 	}
-	public String getMediosPago() {
-		return mediosPago;
+	public String getMedioPago() {
+		return medioPago;
 	}
-	public void setMediosPago(String mediosPago) {
-		this.mediosPago = mediosPago;
+	public void setMedioPago(String medioPago) {
+		this.medioPago = medioPago;
 	}
 	public String getIdBanco() {
 		return idBanco;
@@ -133,12 +131,6 @@ public class GenerarEgresoDTO {
 		this.observacionesEgreso = observacionesEgreso;
 	}
 	
-	public String getNumeroEgreso() {
-		return numeroEgreso;
-	}
-	public void setNumeroEgreso(String numeroEgreso) {
-		this.numeroEgreso = numeroEgreso;
-	}
 	
 	public String getNit() {
 		return nit;
@@ -157,9 +149,9 @@ public class GenerarEgresoDTO {
 
 	@Override
 	public String toString() {
-		return "GenerarEgresoDTO [idEgreso=" + idEgreso + ", nombreBeneficiario=" + nombreBeneficiario
+		return "GenerarEgresoDTO [numeroComprobante=" + numeroComprobante + ", nombreBeneficiario=" + nombreBeneficiario
 				+ ", direccionBeneficiario=" + direccionBeneficiario + ", telefonoBeneficiario=" + telefonoBeneficiario
-				+ ", ciudadBeneficiario=" + ciudadBeneficiario + ", mediosPago=" + mediosPago + ", idBanco=" + idBanco
+				+ ", ciudadBeneficiario=" + ciudadBeneficiario + ", medioPago=" + medioPago + ", idBanco=" + idBanco
 				+ ", fechaEgreso=" + fechaEgreso + ", valorEgreso=" + valorEgreso + ", valorLetra=" + valorLetra
 				+ ", descripcionEgreso=" + descripcionEgreso + ", observacionesEgreso=" + observacionesEgreso + ", nit="
 				+ nit + ", direccion=" + direccion + "]";

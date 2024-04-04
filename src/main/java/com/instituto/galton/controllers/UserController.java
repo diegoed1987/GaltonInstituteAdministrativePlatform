@@ -90,7 +90,7 @@ public class UserController {
 		periodos = periodoService.getPeriodos();
 		numFactura = facturaService.getMaxFacturaId();
 		numEgreso = egresoService.getMaxEgresoId();
-		String numeroEgreso = "Egreso #"+ numEgreso;
+		String numeroComprobante = "Egreso #"+ numEgreso;
 		String numeroFactura = "Factura #"+ numFactura;
 		
 		model.addAttribute("generarFacturaDTO", new GenerarFacturaDTO());
@@ -99,7 +99,7 @@ public class UserController {
 		model.addAttribute("programas",programas);
 		model.addAttribute("periodos",periodos);
 		model.addAttribute("maxId", numeroFactura);
-		model.addAttribute("maxIdEgreso", numeroEgreso);
+		model.addAttribute("maxIdEgreso", numeroComprobante);
 		return "contabilidad";
 	}
 	
@@ -196,7 +196,7 @@ public class UserController {
 		egresos.setDescripcionEgreso(generarEgresoDTO.getDescripcionEgreso());
 		egresos.setFechaEgreso(date);
 		egresos.setIdBeneficiario(Integer.parseInt(generarEgresoDTO.getIdBeneficiario()));
-		egresos.setMediosPago(generarEgresoDTO.getMediosPago());
+		egresos.setMediosPago(generarEgresoDTO.getMedioPago());
 		egresos.setNombreBeneficiario(generarEgresoDTO.getNombreBeneficiario());
 		egresos.setObservacionesEgreso(generarEgresoDTO.getObservacionesEgreso());
 		egresos.setValorLetra(generarEgresoDTO.getValorLetra());
@@ -216,7 +216,7 @@ public class UserController {
 		
 		
 		generarEgresoDTO.setFechaEgreso(fechaEgreso);
-		generarEgresoDTO.setNumeroEgreso(String.valueOf(numEgreso));
+		generarEgresoDTO.setNumeroComprobante(String.valueOf(numEgreso));
 		generarEgresoDTO.setNit("913434489-0");
 		generarEgresoDTO.setDireccion("CARRERA 11 # 12- 29");
 		if(!generarEgresoDTO.getIdBanco().isBlank()) {
