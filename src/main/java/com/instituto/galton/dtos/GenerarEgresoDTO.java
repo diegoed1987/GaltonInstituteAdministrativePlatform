@@ -1,5 +1,7 @@
 package com.instituto.galton.dtos;
 
+import java.util.Arrays;
+
 public class GenerarEgresoDTO {
 	
 	private String numeroComprobante;
@@ -18,18 +20,14 @@ public class GenerarEgresoDTO {
 	private String nit;
 	private String direccion;
 	
-	
-	
 	public GenerarEgresoDTO() {
 		super();
 	}
 	
-	
-	
-	public GenerarEgresoDTO(String numeroComprobante, String idBeneficiario, String nombreBeneficiario, String direccionBeneficiario,
-			String telefonoBeneficiario, String ciudadBeneficiario, String mediosPago, String idBanco,
-			String fechaEgreso, String valorEgreso, String valorLetra, String descripcionEgreso,
-			String observacionesEgreso, String nit, String direccion) {
+	public GenerarEgresoDTO(String numeroComprobante, String idBeneficiario, String nombreBeneficiario,
+			String direccionBeneficiario, String telefonoBeneficiario, String ciudadBeneficiario, String medioPago,
+			String idBanco, String fechaEgreso, String valorEgreso, String valorLetra, String descripcionEgreso,
+			String observacionesEgreso, String nit, String direccion, byte[] logoImagen) {
 		super();
 		this.numeroComprobante = numeroComprobante;
 		this.idBeneficiario = idBeneficiario;
@@ -47,23 +45,18 @@ public class GenerarEgresoDTO {
 		this.nit = nit;
 		this.direccion = direccion;
 	}
-
-
-
 	public String getNumeroComprobante() {
 		return numeroComprobante;
 	}
 	public void setNumeroComprobante(String numeroComprobante) {
 		this.numeroComprobante = numeroComprobante;
 	}
-	
 	public String getIdBeneficiario() {
 		return idBeneficiario;
 	}
 	public void setIdBeneficiario(String idBeneficiario) {
 		this.idBeneficiario = idBeneficiario;
 	}
-	
 	public String getNombreBeneficiario() {
 		return nombreBeneficiario;
 	}
@@ -130,8 +123,6 @@ public class GenerarEgresoDTO {
 	public void setObservacionesEgreso(String observacionesEgreso) {
 		this.observacionesEgreso = observacionesEgreso;
 	}
-	
-	
 	public String getNit() {
 		return nit;
 	}
@@ -144,20 +135,17 @@ public class GenerarEgresoDTO {
 	public void setDireccion(String direccion) {
 		this.direccion = direccion;
 	}
-
-
-
+	
 	@Override
 	public String toString() {
-		return "GenerarEgresoDTO [numeroComprobante=" + numeroComprobante + ", nombreBeneficiario=" + nombreBeneficiario
-				+ ", direccionBeneficiario=" + direccionBeneficiario + ", telefonoBeneficiario=" + telefonoBeneficiario
-				+ ", ciudadBeneficiario=" + ciudadBeneficiario + ", medioPago=" + medioPago + ", idBanco=" + idBanco
-				+ ", fechaEgreso=" + fechaEgreso + ", valorEgreso=" + valorEgreso + ", valorLetra=" + valorLetra
-				+ ", descripcionEgreso=" + descripcionEgreso + ", observacionesEgreso=" + observacionesEgreso + ", nit="
-				+ nit + ", direccion=" + direccion + "]";
+		return "GenerarEgresoDTO [numeroComprobante=" + numeroComprobante + ", idBeneficiario=" + idBeneficiario
+				+ ", nombreBeneficiario=" + nombreBeneficiario + ", direccionBeneficiario=" + direccionBeneficiario
+				+ ", telefonoBeneficiario=" + telefonoBeneficiario + ", ciudadBeneficiario=" + ciudadBeneficiario
+				+ ", medioPago=" + medioPago + ", idBanco=" + idBanco + ", fechaEgreso=" + fechaEgreso
+				+ ", valorEgreso=" + valorEgreso + ", valorLetra=" + valorLetra + ", descripcionEgreso="
+				+ descripcionEgreso + ", observacionesEgreso=" + observacionesEgreso + ", nit=" + nit + ", direccion="
+				+ direccion + "]";
 	}
 	
 	
-	
-
 }

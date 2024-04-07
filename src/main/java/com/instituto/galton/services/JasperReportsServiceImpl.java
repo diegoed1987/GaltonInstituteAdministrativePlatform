@@ -3,6 +3,9 @@ package com.instituto.galton.services;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.io.FileInputStream;
 import java.util.Date;
 import java.util.HashMap;
@@ -10,6 +13,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ResourceUtils;
 
@@ -17,6 +21,7 @@ import com.instituto.galton.dtos.GenerarEgresoDTO;
 import com.instituto.galton.dtos.GenerarFacturaDTO;
 import com.instituto.galton.models.Usuario;
 
+import jakarta.servlet.http.HttpServletResponse;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
@@ -52,6 +57,8 @@ public class JasperReportsServiceImpl implements JasperReportsService{
         params.put("banco", generarFacturaDTO.getBanco());
         params.put("email", generarFacturaDTO.getEmail());
         params.put("telefono", generarFacturaDTO.getTelefono());
+        params.put("generarFacturaDTO", generarFacturaDTO);
+        params.put("DIR_LOGO", getLogoPath().toString());
         
         JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(List.of(params));
 
@@ -70,7 +77,6 @@ public byte[] generarEgreso(GenerarEgresoDTO generarEgresoDTO, String nombreRepo
         
         Map<String, Object> params = new HashMap<String, Object>();
         
-        
         params.put("numeroComprobante", generarEgresoDTO.getNumeroComprobante());
         params.put("nitBeneficiario", generarEgresoDTO.getIdBeneficiario());
         params.put("nombreBeneficiario", generarEgresoDTO.getNombreBeneficiario());
@@ -86,6 +92,7 @@ public byte[] generarEgreso(GenerarEgresoDTO generarEgresoDTO, String nombreRepo
         params.put("observacionesComprobante", generarEgresoDTO.getObservacionesEgreso());
         params.put("nit", generarEgresoDTO.getNit());
         params.put("direccion", generarEgresoDTO.getDireccion());
+        params.put("DIR_LOGO", getLogoPath().toString());
         
         JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(List.of(params));
 
@@ -94,5 +101,7 @@ public byte[] generarEgreso(GenerarEgresoDTO generarEgresoDTO, String nombreRepo
         return JasperExportManager.exportReportToPdf(jasperPrint);
 	}
 
-
+	public Path getLogoPath() throws IOException {
+		return Paths.get("src/main/resources/static/images/logo_reportes.png");
+	}
 }

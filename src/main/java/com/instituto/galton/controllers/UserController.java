@@ -1,10 +1,14 @@
 package com.instituto.galton.controllers;
 
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -185,13 +189,10 @@ public class UserController {
 		String fechaEgreso = simpleDateFormat.format(date);
 
 		Egresos egresos = new Egresos();
-	
 
-		
 		if (!generarEgresoDTO.getIdBanco().isBlank()) {
 			egresos.setIdBanco(Integer.parseInt(generarEgresoDTO.getIdBanco()));
 		}
-		
 		
 		egresos.setDescripcionEgreso(generarEgresoDTO.getDescripcionEgreso());
 		egresos.setFechaEgreso(date);
@@ -213,8 +214,6 @@ public class UserController {
 		
 		egresoService.crearEgreso(egresos);
 
-		
-		
 		generarEgresoDTO.setFechaEgreso(fechaEgreso);
 		generarEgresoDTO.setNumeroComprobante(String.valueOf(numEgreso));
 		generarEgresoDTO.setNit("913434489-0");
@@ -241,5 +240,19 @@ public class UserController {
         model.addAttribute("mensaje", mensaje);
         
         return ResponseEntity.ok(mensaje);
+	}
+	
+	@GetMapping(value = "/logo", produces = MediaType.IMAGE_PNG_VALUE)
+	public void getLogoImagen(HttpServletResponse response) throws IOException {
+		Path path = Paths.get("src/main/resources/static/images/logo_reportes.png");
+		byte[] imageByte = Files.readAllBytes(path);
+        try {
+            response.setContentType(MediaType.IMAGE_PNG_VALUE);
+            response.getOutputStream().write(imageByte);
+        }catch (Exception e) {
+            e.printStackTrace();
+            response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+            response.getWriter().write("Error generating report: " + e.getMessage());
+        }
 	}
 }
