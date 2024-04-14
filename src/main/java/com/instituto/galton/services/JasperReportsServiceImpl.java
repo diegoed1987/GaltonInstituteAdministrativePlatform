@@ -1,27 +1,18 @@
 package com.instituto.galton.services;
 
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.io.FileInputStream;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.core.io.ClassPathResource;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
-import org.springframework.util.ResourceUtils;
 
 import com.instituto.galton.dtos.GenerarEgresoDTO;
 import com.instituto.galton.dtos.GenerarFacturaDTO;
-import com.instituto.galton.models.Usuario;
 
-import jakarta.servlet.http.HttpServletResponse;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
@@ -39,8 +30,6 @@ public class JasperReportsServiceImpl implements JasperReportsService{
 		ClassPathResource resource = new ClassPathResource("reports/" + nombreReporte + ".jasper");
 		
 		JasperReport jasperReport = (JasperReport) JRLoader.loadObject(resource.getInputStream());
-        
-        Date date = new Date();
         
         Map<String, Object> params = new HashMap<String, Object>();
         
@@ -72,8 +61,6 @@ public byte[] generarEgreso(GenerarEgresoDTO generarEgresoDTO, String nombreRepo
 		ClassPathResource resource = new ClassPathResource("reports/" + nombreReporte + ".jasper");
 		
 		JasperReport jasperReport = (JasperReport) JRLoader.loadObject(resource.getInputStream());
-        
-        Date date = new Date();
         
         Map<String, Object> params = new HashMap<String, Object>();
         

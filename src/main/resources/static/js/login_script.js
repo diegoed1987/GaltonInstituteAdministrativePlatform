@@ -2,7 +2,7 @@
 /*------------- GIRAR TARJETA ------------*/
 const front = document.getElementById('front-card')
 const back = document.getElementById('back-card')
-const btn = document.getElementById('flip-link')
+//const btn = document.getElementById('flip-link')
 const btn2 = document.getElementById('back-link')
 
 function handleFlip() {
@@ -14,7 +14,7 @@ function handleFlip() {
   {enableLoginButton()}
 }
 
-btn.addEventListener('click', handleFlip)
+//btn.addEventListener('click', handleFlip)
 btn2.addEventListener('click', handleFlip)
 
 /*--------------- REGISTRAR USUARIO ---------------------*/

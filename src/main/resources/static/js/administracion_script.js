@@ -1,6 +1,9 @@
 const cardButton = document.getElementById("cardCreateUser");
+const crearUsuarioForm = document.getElementById("crearUsuarioForm");
+const closeUsuarioModalBtn = document.getElementById("closeUsuarioModal");
 
 cardButton.addEventListener("click", abrirModal);
+closeUsuarioModalBtn.addEventListener("click",cerrarModal);
 
 
 var modal = document.getElementById("administrarUsuarioModal");
@@ -11,6 +14,11 @@ function abrirModal() {
 
 function cerrarModal() {
 	modal.style.display = "none";
+	crearUsuarioForm.reset();
+}
+
+function limpiarFormModalUsuario(){
+	crearUsuarioForm.reset();
 }
 
 

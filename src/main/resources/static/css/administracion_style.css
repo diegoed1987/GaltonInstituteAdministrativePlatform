@@ -104,3 +104,14 @@ section{
 		opacity:1;
 	}
 }
+
+.crearUsuarioContent{
+	margin-top: 2%;
+}
+
+.closeUsuarioModal{
+	background: none;
+	border: none;
+	position: relative;
+	margin-left: 97%;
+}

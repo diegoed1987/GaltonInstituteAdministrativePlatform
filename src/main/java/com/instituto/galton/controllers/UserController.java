@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.instituto.galton.dtos.CrearUsuarioDTO;
 import com.instituto.galton.dtos.GenerarEgresoDTO;
 import com.instituto.galton.dtos.GenerarFacturaDTO;
 import com.instituto.galton.helpers.Alert;
@@ -25,12 +26,16 @@ import com.instituto.galton.models.Egresos;
 import com.instituto.galton.models.Factura;
 import com.instituto.galton.models.Periodo;
 import com.instituto.galton.models.Programa;
+import com.instituto.galton.models.RolUsuario;
+import com.instituto.galton.models.Sede;
 import com.instituto.galton.services.BancoService;
 import com.instituto.galton.services.EgresoService;
 import com.instituto.galton.services.FacturaService;
 import com.instituto.galton.services.JasperReportsService;
 import com.instituto.galton.services.PeriodoService;
 import com.instituto.galton.services.ProgramaService;
+import com.instituto.galton.services.RolUsuarioService;
+import com.instituto.galton.services.SedeService;
 
 import jakarta.servlet.http.HttpServletResponse;
 
@@ -56,11 +61,20 @@ public class UserController {
 	@Autowired
 	private EgresoService egresoService;
 	
+	@Autowired
+	private RolUsuarioService rolUsuarioService;
+	
+	@Autowired
+	private SedeService sedeService;
+	
 	private String numFactura = "";
 	private String numEgreso = "";
 	private Iterable<Banco> bancos = null;
 	private Iterable<Programa> programas = null;
 	private Iterable<Periodo> periodos = null;
+	private String datePattern = "dd/MM/yyyy";
+	private Iterable<RolUsuario> rolesUsuario = null;
+	private Iterable<Sede> sedes = null;
 	
 	@GetMapping("/")
 	public String paginaAdministrador() {
@@ -73,17 +87,30 @@ public class UserController {
 	}
 	
 	@GetMapping("/administracion")
-	public String administracion() {
+	public String administracion(Model model) {
+		CrearUsuarioDTO crearUsuarioDTO = new CrearUsuarioDTO();
+		model.addAttribute("crearUsuarioDTO", crearUsuarioDTO);
+		rolesUsuario = rolUsuarioService.getRolesUsuarios();
+		sedes = sedeService.getSedes();
+		model.addAttribute("rolesUsuario", rolesUsuario);
+		model.addAttribute("sedes", sedes);
 		return "administracion";
 	}
 	
 	@PostMapping("/crearUsuario")
-	public Alert creaUsuarioModal() {
-		Alert alert = new Alert();
-		alert.setTitle("Registro de Usuario");
-		alert.setText("El usuario ha sido registrado existosamente.");
-		alert.setIcon("success");
-		return alert;
+	public String creaUsuarioModal(@ModelAttribute("crearUsuarioDTO") CrearUsuarioDTO crearUsuarioDTO, Model model) {
+		System.out.println("crearUsuarioDTO.getDocumentoUsuario(): "+crearUsuarioDTO.getDocumentoUsuario());
+		System.out.println("crearUsuarioDTO.getDireccionUsuario(): "+crearUsuarioDTO.getDireccionUsuario());
+		System.out.println("crearUsuarioDTO.getEmailUsuario(): "+crearUsuarioDTO.getEmailUsuario());
+		System.out.println("crearUsuarioDTO.getEstadoUsuario(): "+crearUsuarioDTO.getEstadoUsuario());
+		System.out.println("crearUsuarioDTO.getFechaNacimiento(): "+crearUsuarioDTO.getFechaNacimiento());
+		System.out.println("crearUsuarioDTO.getNombreUsuario(): "+crearUsuarioDTO.getNombreUsuario());
+		System.out.println("crearUsuarioDTO.getPasswordUsuario(): "+crearUsuarioDTO.getPasswordUsuario());
+		System.out.println("crearUsuarioDTO.getRolUsuario(): "+crearUsuarioDTO.getRolUsuario());
+		System.out.println("crearUsuarioDTO.getSedeUsuario(): "+crearUsuarioDTO.getSedeUsuario());
+		System.out.println("crearUsuarioDTO.getTelefonoUsuario(): "+crearUsuarioDTO.getTelefonoUsuario());
+		model.addAttribute("mensaje", "registro exitoso desde crearUsuario");
+		return "redirect:/administracion";
 	}
 	
 	@GetMapping("/contabilidad")
@@ -114,8 +141,7 @@ public class UserController {
 		String mensaje = "Factura generada con éxito";
 		
 		Date date = new Date();
-		String pattern = "dd/MM/yyyy";
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(datePattern);
 		String fechaRecibo = simpleDateFormat.format(date);
 
 		Factura factura = new Factura();
@@ -184,8 +210,7 @@ public class UserController {
 		String mensaje = "Factura generada con éxito";
 		
 		Date date = new Date();
-		String pattern = "dd/MM/yyyy";
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(datePattern);
 		String fechaEgreso = simpleDateFormat.format(date);
 
 		Egresos egresos = new Egresos();
@@ -242,17 +267,22 @@ public class UserController {
         return ResponseEntity.ok(mensaje);
 	}
 	
-	@GetMapping(value = "/logo", produces = MediaType.IMAGE_PNG_VALUE)
-	public void getLogoImagen(HttpServletResponse response) throws IOException {
-		Path path = Paths.get("src/main/resources/static/images/logo_reportes.png");
-		byte[] imageByte = Files.readAllBytes(path);
-        try {
-            response.setContentType(MediaType.IMAGE_PNG_VALUE);
-            response.getOutputStream().write(imageByte);
-        }catch (Exception e) {
-            e.printStackTrace();
-            response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
-            response.getWriter().write("Error generating report: " + e.getMessage());
-        }
+	@GetMapping("/profesores")
+	public String getProfesores() {
+		return "profesores";
 	}
+	
+//	@GetMapping(value = "/logo", produces = MediaType.IMAGE_PNG_VALUE)
+//	public void getLogoImagen(HttpServletResponse response) throws IOException {
+//		Path path = Paths.get("src/main/resources/static/images/logo_reportes.png");
+//		byte[] imageByte = Files.readAllBytes(path);
+//        try {
+//            response.setContentType(MediaType.IMAGE_PNG_VALUE);
+//            response.getOutputStream().write(imageByte);
+//        }catch (Exception e) {
+//            e.printStackTrace();
+//            response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+//            response.getWriter().write("Error generating report: " + e.getMessage());
+//        }
+//	}
 }
