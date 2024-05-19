@@ -43,28 +43,28 @@ function registerUser() {
 
 /*--------------- INICIAR SESSION ---------------------*/
 
-function loginUser() {
-    var form = document.getElementById("login-form");
-    var formData = new FormData(form);
-
-    fetch('/login', {
-        method: 'POST',
-        body: formData
-    })
-    .then(response => response.json())
-    .then(data => {
-        if(data.icon === "success"){
-			window.location.href = '/';
-		}else{
-			Swal.fire({
-	            icon: data.icon,
-	            title: data.title,
-	            text: data.text,
-	            allowOutsideClick: false
-	        });
-		}
-    });
-}
+//function loginUser() {
+//    var form = document.getElementById("login-form");
+//    var formData = new FormData(form);
+//
+//    fetch('/login', {
+//        method: 'POST',
+//        body: formData
+//    })
+//    .then(response => response.json())
+//    .then(data => {
+//        if(data.icon === "success"){
+//			window.location.href = '/';
+//		}else{
+//			Swal.fire({
+//	            icon: data.icon,
+//	            title: data.title,
+//	            text: data.text,
+//	            allowOutsideClick: false
+//	        });
+//		}
+//    });
+//}
 
 /*--------------- HABITILAR E INHALITAR BOTON FORMULARIOS ---------------------*/
 
@@ -144,4 +144,16 @@ function recuperarContrasena(){
             }
         });
     })
+}
+
+
+function showSweetAlert(alert) {
+    if (typeof alert !== 'undefined') {
+        Swal.fire({
+            icon: alert.icon,
+            title: alert.title,
+            text: alert.text,
+            allowOutsideClick: false
+        });
+    }
 }

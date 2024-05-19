@@ -35,6 +35,9 @@ public class Usuario {
 	@Column(name = "ESTADO")
 	private String estado;
 	
+	@Column(name = "SEDE")
+	private String sede;
+	
 	@Column(name = "FECHA_CREACION")
 	private Date fechaCreacion;
 	
@@ -81,6 +84,14 @@ public class Usuario {
 		this.estado = estado;
 	}
 
+	public String getSede() {
+		return sede;
+	}
+
+	public void setSede(String sede) {
+		this.sede = sede;
+	}
+
 	public Date getFechaCreacion() {
 		return fechaCreacion;
 	}
@@ -100,7 +111,7 @@ public class Usuario {
 	@Override
 	public String toString() {
 		return "Usuario [id=" + id + ", email=" + email + ", password=" + password + ", rol=" + rol + ", estado="
-				+ estado + ", fechaCreacion=" + fechaCreacion + ", fechaModificacion=" + fechaModificacion + "]";
+				+ estado + ", sede=" + sede + ", fechaCreacion=" + fechaCreacion + ", fechaModificacion="
+				+ fechaModificacion + "]";
 	}
-	
 }

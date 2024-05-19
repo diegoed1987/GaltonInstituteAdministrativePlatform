@@ -8,32 +8,57 @@
   </head>
   <body>
   	<section>
-  		<div class= "container2">
+  		<div class= "administracionContainer">
   			<div class="card2" id="cardCreateUser">
   				<div class="card-icon">
         			<i class="bi bi-person"></i>
         			<p>Opciones de Usuario</p>
     			</div>
   			</div>
-  			<div class="card2" id="cardModifyUser">
+  			<div class="card2" id="cardOpcionesSede">
   				<div class="card-icon">
+        			<i class="bi bi-building"></i>
+        			<p>Opciones de Sede</p>
     			</div>
   			</div>
-  			<div class="card2" id="cardDeleteUser">
+  			<div class="card2" id="cardOpcionesEstudiante">
   				<div class="card-icon">
+        			<i class="bi bi-book"></i>
+        			<p>Opciones de Estudiante</p>
     			</div>
   			</div>
-  			<div class="card2" id="cardCreate"></div>
-  			<div class="card2"></div>
-  			<div class="card2"></div>
-  			<a href="/generarReporte">Generar Reporte</a>
+  			<div class="card2" id="cardOpcionesProfesor">
+  				<div class="card-icon">
+        			<i class="bi bi-clipboard2"></i>
+        			<p>Opciones de Profesor</p>
+    			</div>
+    		</div>
+  			<div class="card2" id="cardOpcionesProgramas">
+  				<div class="card-icon">
+        			<i class="bi bi-bookmarks"></i>
+        			<p>Opciones de Programas Académicos</p>
+    			</div>
+  			</div>
+  			<div class="card2" id="cardOpcionesBancos">
+  				<div class="card-icon">
+        			<i class="bi bi-bank"></i>
+        			<p>Opciones de Bancos</p>
+    			</div>
+    		</div>
+  			<div class="card2" id="cardOpcionesBancos">
+  				<div class="card-icon">
+        			<i class="bi bi-calendar2-week"></i>
+        			<p>Opciones de Períodos</p>
+    			</div>
+    		</div>
+<!--   			<a href="/generarReporte">Generar Reporte</a> -->
   		</div>
   		
   		
   		
-  		<!---------------- Modal Registrar Usuario -------------->
-	<div id="administrarUsuarioModal" class="modal">
-		<div class="modal-content1">
+  		<!---------------- Modal Usuario -------------->
+	<div id="administrarUsuarioModal" class="modalUsuario">
+		<div class="modal-contentUsuario">
 			<button class="closeUsuarioModal" id="closeUsuarioModal">&times;</button>
 			<ul class="nav nav-tabs" id="myTab" role="tablist">
 				<li class="nav-item" role="presentation">
@@ -46,70 +71,87 @@
 			
 			<div class="tab-content" id="myTabContent">
 				<div class="tab-pane fade show active" id="crearUsuarioTab" role="tabpanel" aria-labelledby="crearUsuario-tab">
-			  		<div class="crearUsuarioContent">
-			  			<form class="row g-3" th:action="@{/crearUsuario}" th:object="${crearUsuarioDTO}" method="post" id="crearUsuarioForm">
-							<div class="col-md-4">
-						    	<label for="documentoUsuario" class="form-label">Documento Usuario *</label>
-						    	<input type="text" class="form-control" id="documentoUsuario" name="documentoUsuario" th:field="*{documentoUsuario}">
-							</div>
-							<div class="col-md-8">
-						    	<label for="nombreUsuario" class="form-label">Nombre Usuario *</label>
-						    	<input type="text" class="form-control" id="nombreUsuario" name="nombreUsuario" th:field="*{nombreUsuario}">
-							</div>
-							<div class="col-md-6">
-						    	<label for="emailUsuario" class="form-label">Email Usuario *</label>
-						    	<input type="text" class="form-control" id="emailUsuario" name="emailUsuario" th:field="*{emailUsuario}">
-							</div>
-							<div class="col-md-6">
-						    	<label for="passwordUsuario" class="form-label">Password Usuario *</label>
-						    	<input type="password" class="form-control" id="passwordUsuario" name="passwordUsuario" th:field="*{passwordUsuario}">
-							</div>
-							<div class="col-md-4">
-						    	<label for="fechaNacimiento" class="form-label">Fecha Nacimiento</label>
-						    	<input type="date" class="form-control" id="fechaNacimiento" name="fechaNacimiento" th:field="*{fechaNacimiento}">
-							</div>
-							<div class="col-md-4">
-						    	<label for="rolUsuario" class="form-label">Rol</label>
-						    	<select id="rolUsuario" class="form-select" name="rolUsuario" th:field="*{rolUsuario}">
-						      		<option value="">Seleccione...</option>
-						      		<option th:each="item : ${rolesUsuario}" th:value="${item.idRol}" th:text="${item.nombreRol}"></option>
-						   		</select>
-							</div>
-							
-							<div class="col-md-4">
-						    	<label for="estadoUsuario" class="form-label">Estado *</label>
-						    	<select id="estadoUsuario" class="form-select" name="estadoUsuario" th:field="*{estadoUsuario}">
-						      		<option value="">Seleccione...</option>
-						      		<option th:value="A" th:text="Activo"></option>
-						      		<option th:value="I" th:text="Inactivo"></option>
-						   		</select>
-							</div>
-							<div class="col-md-8">
-						    	<label for="direccionUsuario" class="form-label">Dirección Usuario *</label>
-						    	<input type="text" class="form-control" id="direccionUsuario" name="direccionUsuario" th:field="*{direccionUsuario}">
-							</div>
-							<div class="col-md-4">
-						    	<label for="telefonoUsuario" class="form-label">Teléfono Usuario *</label>
-						    	<input type="text" class="form-control" id="telefonoUsuario" name="telefonoUsuario" th:field="*{telefonoUsuario}">
-							</div>
-							<div class="col-md-4">
-						    	<label for="sedeUsuario" class="form-label">Sede</label>
-						    	<select id="sedeUsuario" class="form-select" name="sedeUsuario" th:field="*{sedeUsuario}">
-						      		<option value="">Seleccione...</option>
-						      		<option th:each="item : ${sedes}" th:value="${item.codigoSede}" th:text="${item.nombreSede}"></option>
-						   		</select>
-							</div>
-							<div class="col-12" id="registrarUsuarioButtons">
-						    	<button type="submit" class="btn btn-primary">Registrar Usuario</button>
-						    	<button type="button" class="btn btn-primary" onclick="limpiarFormModalUsuario()">Limpiar Formulario</button>
-							</div>
-						</form>
-			  		</div>
+			  		<div th:replace="~{fragments/administracion/opcionesUsuario/crearUsuarioForm :: crearUsuarioForm}"></div>
 				</div>
-				<div class="tab-pane fade" id="modificarUsuarioTab" role="tabpanel" aria-labelledby="modificarUsuario-tab">...</div>
+				<div class="tab-pane fade" id="modificarUsuarioTab" role="tabpanel" aria-labelledby="modificarUsuario-tab">
+					<div th:replace="~{fragments/administracion/opcionesUsuario/listaUsuarios :: tablaListaUsuarios}"></div>
+				</div>
 			</div>
 		</div>	
 	</div>
+	
+	<!---------------- Modal Sede -------------->
+	<div id="administrarSedeModal" class="modalSede">
+		<div class="modal-contentSede">
+			<button class="closeSedeModal" id="closeSedeModal">&times;</button>
+			<ul class="nav nav-tabs" id="modalSedeTab" role="tablist">
+				<li class="nav-item" role="presentation">
+			    	<button class="nav-link active" id="crearSede-tab" data-bs-toggle="tab" data-bs-target="#crearSedeTab" type="button" role="tab" aria-controls="crearSedeTab" aria-selected="true">Crear Sede</button>
+				</li>
+				<li class="nav-item" role="presentation">
+			    	<button class="nav-link" id="modificarSede-tab" data-bs-toggle="tab" data-bs-target="#modificarSedeTab" type="button" role="tab" aria-controls="modificarSedeTab" aria-selected="false">Modificar Sede</button>
+				</li>
+			</ul>
+			
+			<div class="tab-content" id="sedeTabContent">
+				<div class="tab-pane fade show active" id="crearSedeTab" role="tabpanel" aria-labelledby="crearSede-tab">
+			  		<div th:replace="~{fragments/administracion/opcionesSede/crearSedeForm :: crearSedeForm}"></div>
+				</div>
+				<div class="tab-pane fade" id="modificarSedeTab" role="tabpanel" aria-labelledby="modificarSede-tab">
+					<div th:replace="~{fragments/administracion/opcionesSede/listaSedes :: tablaListaSedes}"></div>
+				</div>
+			</div>
+		</div>	
+	</div>
+	
+	<!---------------- Modal Programas -------------->
+	<div id="administrarProgramaModal" class="modalPrograma">
+		<div class="modal-contentPrograma">
+			<button class="closeProgramaModal" id="closeProgramaModal">&times;</button>
+			<ul class="nav nav-tabs" id="modalProgramaTab" role="tablist">
+				<li class="nav-item" role="presentation">
+			    	<button class="nav-link active" id="crearPrograma-tab" data-bs-toggle="tab" data-bs-target="#crearProgramaTab" type="button" role="tab" aria-controls="crearProgramaTab" aria-selected="true">Crear Programa</button>
+				</li>
+				<li class="nav-item" role="presentation">
+			    	<button class="nav-link" id="modificarPrograma-tab" data-bs-toggle="tab" data-bs-target="#modificarProgramaTab" type="button" role="tab" aria-controls="modificarProgramaTab" aria-selected="false">Modificar Programa</button>
+				</li>
+			</ul>
+			
+			<div class="tab-content" id="programaTabContent">
+				<div class="tab-pane fade show active" id="crearProgramaTab" role="tabpanel" aria-labelledby="crearPrograma-tab">
+			  		<div th:replace="~{fragments/administracion/opcionesPrograma/crearProgramaForm :: crearProgramaForm}"></div>
+				</div>
+				<div class="tab-pane fade" id="modificarProgramaTab" role="tabpanel" aria-labelledby="modificarPrograma-tab">
+					<div th:replace="~{fragments/administracion/opcionesPrograma/listaProgramas :: tablaListaProgramas}"></div>
+				</div>
+			</div>
+		</div>	
+	</div>
+	
+	<!---------------- Modal Bancos -------------->
+	<div id="administrarBancoModal" class="modalBanco">
+		<div class="modal-contentBanco">
+			<button class="closeBancoModal" id="closeBancoModal">&times;</button>
+			<ul class="nav nav-tabs" id="modalBancoTab" role="tablist">
+				<li class="nav-item" role="presentation">
+			    	<button class="nav-link active" id="crearBanco-tab" data-bs-toggle="tab" data-bs-target="#crearBancoTab" type="button" role="tab" aria-controls="crearBancoTab" aria-selected="true">Crear Banco</button>
+				</li>
+				<li class="nav-item" role="presentation">
+			    	<button class="nav-link" id="modificarBanco-tab" data-bs-toggle="tab" data-bs-target="#modificarBancoTab" type="button" role="tab" aria-controls="modificarBancoTab" aria-selected="false">Modificar Banco</button>
+				</li>
+			</ul>
+			
+			<div class="tab-content" id="BancoTabContent">
+				<div class="tab-pane fade show active" id="crearBancoTab" role="tabpanel" aria-labelledby="crearBanco-tab">
+			  		<div th:replace="~{fragments/administracion/opcionesBanco/crearBancoForm :: crearBancoForm}"></div>
+				</div>
+				<div class="tab-pane fade" id="modificarBancoTab" role="tabpanel" aria-labelledby="modificarBanco-tab">
+					<div th:replace="~{fragments/administracion/opcionesBanco/listaBancos :: tablaListaBancos}"></div>
+				</div>
+			</div>
+		</div>	
+	</div>
+	
   	</section>
   </body>
 </html>

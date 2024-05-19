@@ -29,153 +29,18 @@
   		
   		  		<!---------------- Modal Generar Factura -------------->
 		<div id="generarFacturaModal" class="modal">
-			<div class="modal-content1">
-				<div>
-					<div>
-						<h3>Generar Nueva Factura</h3>
-						<p><span th:text="${maxId}"></span></p>
-					</div>
-				</div>
-				<form class="row g-3" th:action="@{/generarFactura}" th:object="${generarFacturaDTO}" method="post" id="generarFacturaForm" th:onsubmit="cerrarModalFactura()">
-					<div class="col-md-4">
-				    	<label for="documentoPagador" class="form-label">Documento Pagador *</label>
-				    	<input type="text" class="form-control" id="documentoPagador" name="documentoPagador" th:field="*{documentoPagador}">
-					</div>
-					<div class="col-md-8">
-				    	<label for="nombrePagador" class="form-label">Nombre Pagador *</label>
-				    	<input type="text" class="form-control" id="nombrePagador" name="nombrePagador" th:field="*{nombrePagador}">
-					</div>
-					<div class="col-md-4">
-				    	<label for="periodo" class="form-label">Periodos</label>
-				    	<select id="periodo" class="form-select" name="periodo" th:field="*{periodo}">
-				      		<option value="">Seleccione...</option>
-				      		<option th:each="item : ${periodos}" th:value="${item.id}" th:text="${item.periodo}"></option>
-				   		</select>
-					</div>
-					<div class="col-md-8">
-				    	<label for="programa" class="form-label">Programas</label>
-				    	<select id="programa" class="form-select" name="programa" th:field="*{programa}">
-				      		<option value="">Seleccione...</option>
-				      		<option th:each="item : ${programas}" th:value="${item.idPrograma}" th:text="${item.nombrePrograma}"></option>
-				   		</select>
-					</div>
-					<div class="col-6">
-				    	<label for="concepto" class="form-label">Concepto *</label>
-				    	<input type="text" class="form-control" id="concepto" name="concepto" th:field="*{concepto}">
-					</div>
-					<div class="col-6">
-				    	<label for="valorRecaudado" class="form-label">Valor Recaudado *</label>
-				    	<input type="text" class="form-control" id="valorRecaudado" name="valorRecaudado" th:field="*{valorRecaudado}">
-					</div>
-					<div class="col-6">
-				    	<label for="valorLetra" class="form-label">Valor Letra *</label>
-				    	<input type="text" class="form-control" id="valorLetra" name="valorLetra" th:field="*{valorLetra}">
-					</div>
-					<div class="col-md-3">
-				    	<label for="medioPago" class="form-label">Medio de Pago *</label>
-				    	<select id="medioPago" class="form-select" name="medioPago" th:field="*{medioPago}">
-				      		<option value="">Seleccione...</option>
-				      		<option value="Efectivo">Efectivo</option>
-				      		<option value="Transferencia">Transferencia</option>
-				      		<option value="Consignacion">Consignacion</option>
-				   		</select>
-					</div>
-					<div class="col-md-3">
-				    	<label for="banco" class="form-label">Banco</label>
-				    	<select id="banco" class="form-select" name="banco" th:field="*{banco}">
-				    		<option value="">Seleccione...</option>
-				      		<option th:each="item : ${bancos}" th:value="${item.id}" th:text="${item.nombreBanco}"></option>
-				   		</select>
-					</div>
-					<div class="col-md-12">
-				    	<label for="observaciones" class="form-label">Observaciones</label>
-				    	<input type="text" class="form-control" id="observaciones" name="observaciones" th:field="*{observaciones}">
-					</div>
-					
-					<div class="col-12" id="generarFacturaButtons">
-				    	<button type="submit" class="btn btn-primary" onclick="cerrarModalFactura()">Generar Factura</button>
-				    	<button type="button" class="btn btn-primary" onclick="cancelarModalFactura()">Cancelar</button>
-					</div>
-				</form>
+			<div class="modalFactura-content">
+				<div th:replace="~{fragments/contabilidad/factura :: generarFacturaForm}"></div>
 		    </div>
 		</div>
-		
-		
-		
-		
+
 		<!---------------- Modal Generar Egreso -------------->
 		<div id="generarEgresoModal" class="modal">
-			<div class="modal-content1">
-				<div>
-					<div>
-						<h3>Generar Nuevo Egreso</h3>
-						<p><span th:text="${maxIdEgreso}"></span></p>
-					</div>
-				</div>
-				<form class="row g-3" th:action="@{/generarEgreso}" th:object="${generarEgresoDTO}" method="post" id="generarEgresoForm" th:onsubmit="cerrarModalEgreso()">
-					<div class="col-md-4">
-				    	<label for="idBeneficiario" class="form-label">Documento Beneficiario *</label>
-				    	<input type="text" class="form-control" id="idBeneficiario" name="idBeneficiario" th:field="*{idBeneficiario}">
-					</div>
-					<div class="col-md-8">
-				    	<label for="nombreBeneficiario" class="form-label">Nombre Beneficiario *</label>
-				    	<input type="text" class="form-control" id="nombreBeneficiario" name="nombreBeneficiario" th:field="*{nombreBeneficiario}">
-					</div>
-					<div class="col-6">
-				    	<label for="direccionBeneficiario" class="form-label">Dirección</label>
-				    	<input type="text" class="form-control" id="direccionBeneficiario" name="direccionBeneficiario" th:field="*{direccionBeneficiario}">
-					</div>
-					<div class="col-6">
-				    	<label for="telefonoBeneficiario" class="form-label">Teléfono</label>
-				    	<input type="text" class="form-control" id="telefonoBeneficiario" name="telefonoBeneficiario" th:field="*{telefonoBeneficiario}">
-					</div>
-					<div class="col-6">
-				    	<label for="ciudadBeneficiario" class="form-label">Ciudad</label>
-				    	<input type="text" class="form-control" id="ciudadBeneficiario" name="ciudadBeneficiario" th:field="*{ciudadBeneficiario}">
-					</div>
-					<div class="col-md-3">
-				    	<label for="medioPago" class="form-label">Medio de Pago *</label>
-				    	<select id="medioPago" class="form-select" name="medioPago" th:field="*{medioPago}">
-				      		<option value="">Seleccione...</option>
-				      		<option value="Efectivo">Efectivo</option>
-				      		<option value="Transferencia">Transferencia</option>
-				      		<option value="Consignacion">Consignacion</option>
-				   		</select>
-					</div>
-					<div class="col-md-3">
-				    	<label for="idBanco" class="form-label">Banco</label>
-				    	<select id="idBanco" class="form-select" name="idBanco" th:field="*{idBanco}">
-				    		<option value="">Seleccione...</option>
-				      		<option th:each="item : ${bancos}" th:value="${item.id}" th:text="${item.nombreBanco}"></option>
-				   		</select>
-					</div>
-					<div class="col-md-4">
-				    	<label for="valorEgreso" class="form-label">Valor</label>
-				    	<input type="text" class="form-control" id="valorEgreso" name="valorEgreso" th:field="*{valorEgreso}">
-					</div>
-					<div class="col-md-8">
-				    	<label for="valorLetra" class="form-label">Valor letras</label>
-				    	<input type="text" class="form-control" id="valorLetra" name="valorLetra" th:field="*{valorLetra}">
-					</div>
-					<div class="col-md-12">
-				    	<label for="descripcionEgreso" class="form-label">Descripción</label>
-				    	<input type="text" class="form-control" id="descripcionEgreso" name="descripcionEgreso" th:field="*{descripcionEgreso}">
-					</div>
-					<div class="col-md-12">
-				    	<label for="observacionesEgreso" class="form-label">Observaciones</label>
-				    	<input type="text" class="form-control" id="observacionesEgreso" name="observacionesEgreso" th:field="*{observacionesEgreso}">
-					</div>
-					
-					<div class="col-12" id="generarEgresoButtons">
-				    	<button type="submit" class="btn btn-primary" onclick="cerrarModalEgreso()">Generar Egreso</button>
-				    	<button type="button" class="btn btn-primary" onclick="cancelarModalEgreso()">Cancelar</button>
-					</div>
-				</form>
+			<div class="modalEgreso-content">
+				<div th:replace="~{fragments/contabilidad/egreso :: generarEgresoForm}"></div>
 		    </div>
 		</div>
-		
-		
-		
+
 		<input type="hidden" th:value="${mensaje}" id="mensajeOculto">
   	</section>
   </body>

@@ -28,4 +28,10 @@ public class DetalleUsuarioServiceImpl implements DetalleUsuarioService{
 		return detalleUsuarioRepository.findByIdUsuario(idUsuario);
 	}
 
+	@Override
+	public void modificarDetalleUsuario(DetalleUsuario detalleUsuario) {
+		detalleUsuarioRepository.save(detalleUsuario);
+		
+	}
+
 }

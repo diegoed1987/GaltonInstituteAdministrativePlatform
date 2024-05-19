@@ -4,20 +4,15 @@
 	--card-icon-hover-color: #FFFFFF;
 }
 
-section{
-	height: 100%;
-}
-
-.container2{
+.administracionContainer{
 	display: grid;
-	grid-template-columns: repeat(3, 200px);
-	grid-template-rows: 2;
-	/*justify-content: center;*/
 	row-gap: 30px;
-	column-gap: 150px;
-	/*margin-left: -100px;*/
-	margin-left: 80px;
 	padding-top: 100px;
+	place-items: center;
+	margin: 0 auto;
+	max-height: 100%;
+	overflow: auto;
+	padding-bottom: 5%;
 }
 
 .card2{
@@ -54,26 +49,38 @@ section{
 .card2:hover p{
 	color: var(--card-icon-hover-color) !important;
 }
-/*-------------------------------------- MODAL ---------------------------------------------------*/
 
-.modal {
+@media (min-width: 850px) {
+  .administracionContainer { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (min-width: 1200px) {
+  .administracionContainer { grid-template-columns: repeat(3, 1fr); }
+}
+
+/*-------------------------------------- MODAL USUARIO ---------------------------------------------------*/
+
+.modalUsuario {
 	display: none;
 	left: 0;
 	top: 0;
-	width: 50%;
-	height: 50%;
+	width: 100%;
+	height: 100%;
 	overflow: auto;
 	background-color: rgb(0,0,0);
 	background-color: rgba(0,0,0,0.4);
 	animation:fadein .5s;
+	position: absolute;
 }
 
-.modal-content1 {
+.modal-contentUsuario {
 	background-color: #FFFFFF;
-	margin: 15% auto;
+/* 	margin: 15% auto; */
 	padding: 25px;
-	width: 30%;
+	width: 60%;
 	border-radius: 5px;
+	margin-left: 28%;
+	margin-top: 1%
 }
 
 .text-modal{
@@ -114,4 +121,407 @@ section{
 	border: none;
 	position: relative;
 	margin-left: 97%;
+}
+
+/*-------------------------------------- MODAL ACTUALIZAR ---------------------------------------------------*/
+
+.modalActualizar{
+	display: none;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+	background-color: rgb(0,0,0);
+	background-color: rgba(0,0,0,0.4);
+	animation:fadein .5s;
+	z-index: 1;
+	position: absolute;
+}
+
+.modalActualizar-content{
+	background-color: #FFFFFF;
+/* 	margin: 15% auto; */
+	padding: 25px;
+	width: 60%;
+	border-radius: 5px;
+	margin-top: 1%;
+	margin-left: 28%;
+	max-height: 80%;
+}
+
+.closeModalActualizar{
+	background: none;
+	border: none;
+	position: relative;
+	margin-left: 97%;
+}
+
+.btn-editIcon {
+  background-color: transparent;
+  border: none;
+  color: var(--card-icon-color);
+  font-size: 24px;
+  transition: color 0.3s ease;
+}
+
+.btn-editIcon:hover {
+  color: var(--card-hover-background);
+}
+
+#tableScrollable thead th{
+	position: sticky;
+	z-index: 1;
+	top: 0;
+}
+
+/*-------------------------------------- MODAL SEDE ---------------------------------------------------*/
+
+.modalSede {
+	display: none;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+	background-color: rgb(0,0,0);
+	background-color: rgba(0,0,0,0.4);
+	animation:fadein .5s;
+	position: absolute;
+}
+
+.modal-contentSede {
+	background-color: #FFFFFF;
+/* 	margin: 15% auto; */
+	padding: 25px;
+	width: 60%;
+	border-radius: 5px;
+	margin-left: 28%;
+	margin-top: 1%
+}
+
+.text-modal{
+	text-align: center;
+}
+
+.form-modal{
+	margin-top: 20px;
+}
+
+.buttons-modal{
+	display: grid;
+	grid-template-columns: repeat(1, 20%);
+	justify-content: center;
+	padding-top: 5px;
+	row-gap: 10px;
+}
+
+#cancelar-modal{
+	padding-left: 10%;
+}
+
+@keyframes fadein {
+	from {
+		opacity:0;
+	}
+	to {
+		opacity:1;
+	}
+}
+
+.crearSedeContent{
+	margin-top: 2%;
+}
+
+.closeSedeModal{
+	background: none;
+	border: none;
+	position: relative;
+	margin-left: 97%;
+}
+
+/*-------------------------------------- MODAL ACTUALIZAR SEDE ---------------------------------------------------*/
+
+.modalActualizarSede{
+	display: none;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+	background-color: rgb(0,0,0);
+	background-color: rgba(0,0,0,0.4);
+	animation:fadein .5s;
+	z-index: 1;
+	position: absolute;
+}
+
+.modalActualizarSede-content{
+	background-color: #FFFFFF;
+/* 	margin: 15% auto; */
+	padding: 25px;
+	width: 60%;
+	border-radius: 5px;
+	margin-top: 1%;
+	margin-left: 28%;
+	max-height: 55%;
+}
+
+.closeModalActualizarSede{
+	background: none;
+	border: none;
+	position: relative;
+	margin-left: 97%;
+}
+
+.btn-editIcon {
+  background-color: transparent;
+  border: none;
+  color: var(--card-icon-color);
+  font-size: 24px;
+  transition: color 0.3s ease;
+}
+
+.btn-editIcon:hover {
+  color: var(--card-hover-background);
+}
+
+#tableSedeScrollable thead th{
+	position: sticky;
+	z-index: 1;
+	top: 0;
+}
+
+/*-------------------------------------- MODAL PROGRAMA ---------------------------------------------------*/
+
+.modalPrograma {
+	display: none;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+	background-color: rgb(0,0,0);
+	background-color: rgba(0,0,0,0.4);
+	animation:fadein .5s;
+	position: absolute;
+}
+
+.modal-contentPrograma {
+	background-color: #FFFFFF;
+/* 	margin: 15% auto; */
+	padding: 25px;
+	width: 60%;
+	border-radius: 5px;
+	margin-left: 28%;
+	margin-top: 1%
+}
+
+.text-modal{
+	text-align: center;
+}
+
+.form-modal{
+	margin-top: 20px;
+}
+
+.buttons-modal{
+	display: grid;
+	grid-template-columns: repeat(1, 20%);
+	justify-content: center;
+	padding-top: 5px;
+	row-gap: 10px;
+}
+
+#cancelar-modal{
+	padding-left: 10%;
+}
+
+@keyframes fadein {
+	from {
+		opacity:0;
+	}
+	to {
+		opacity:1;
+	}
+}
+
+.crearProgramaContent{
+	margin-top: 2%;
+}
+
+.closeProgramaModal{
+	background: none;
+	border: none;
+	position: relative;
+	margin-left: 97%;
+}
+
+/*-------------------------------------- MODAL ACTUALIZAR PROGRAMA ---------------------------------------------------*/
+
+.modalActualizarPrograma{
+	display: none;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+	background-color: rgb(0,0,0);
+	background-color: rgba(0,0,0,0.4);
+	animation:fadein .5s;
+	z-index: 1;
+	position: absolute;
+}
+
+.modalActualizarPrograma-content{
+	background-color: #FFFFFF;
+/* 	margin: 15% auto; */
+	padding: 25px;
+	width: 60%;
+	border-radius: 5px;
+	margin-top: 1%;
+	margin-left: 28%;
+	max-height: 55%;
+}
+
+.closeModalActualizarPrograma{
+	background: none;
+	border: none;
+	position: relative;
+	margin-left: 97%;
+}
+
+.btn-editIcon {
+  background-color: transparent;
+  border: none;
+  color: var(--card-icon-color);
+  font-size: 24px;
+  transition: color 0.3s ease;
+}
+
+.btn-editIcon:hover {
+  color: var(--card-hover-background);
+}
+
+#tableProgramasScrollable thead th{
+	position: sticky;
+	z-index: 1;
+	top: 0;
+}
+
+/*-------------------------------------- MODAL BANCOS ---------------------------------------------------*/
+
+.modalBanco {
+	display: none;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+	background-color: rgb(0,0,0);
+	background-color: rgba(0,0,0,0.4);
+	animation:fadein .5s;
+	position: absolute;
+}
+
+.modal-contentBanco {
+	background-color: #FFFFFF;
+/* 	margin: 15% auto; */
+	padding: 25px;
+	width: 60%;
+	border-radius: 5px;
+	margin-left: 28%;
+	margin-top: 1%
+}
+
+.text-modal{
+	text-align: center;
+}
+
+.form-modal{
+	margin-top: 20px;
+}
+
+.buttons-modal{
+	display: grid;
+	grid-template-columns: repeat(1, 20%);
+	justify-content: center;
+	padding-top: 5px;
+	row-gap: 10px;
+}
+
+#cancelar-modal{
+	padding-left: 10%;
+}
+
+@keyframes fadein {
+	from {
+		opacity:0;
+	}
+	to {
+		opacity:1;
+	}
+}
+
+.crearBancoContent{
+	margin-top: 2%;
+}
+
+.closeBancoModal{
+	background: none;
+	border: none;
+	position: relative;
+	margin-left: 97%;
+}
+
+/*-------------------------------------- MODAL ACTUALIZAR BANCOS ---------------------------------------------------*/
+
+.modalActualizarBanco{
+	display: none;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+	background-color: rgb(0,0,0);
+	background-color: rgba(0,0,0,0.4);
+	animation:fadein .5s;
+	z-index: 1;
+	position: absolute;
+}
+
+.modalActualizarBanco-content{
+	background-color: #FFFFFF;
+/* 	margin: 15% auto; */
+	padding: 25px;
+	width: 60%;
+	border-radius: 5px;
+	margin-top: 1%;
+	margin-left: 28%;
+	max-height: 55%;
+}
+
+.closeModalActualizarBanco{
+	background: none;
+	border: none;
+	position: relative;
+	margin-left: 97%;
+}
+
+.btn-editIcon {
+  background-color: transparent;
+  border: none;
+  color: var(--card-icon-color);
+  font-size: 24px;
+  transition: color 0.3s ease;
+}
+
+.btn-editIcon:hover {
+  color: var(--card-hover-background);
+}
+
+#tableBancosScrollable thead th{
+	position: sticky;
+	z-index: 1;
+	top: 0;
 }

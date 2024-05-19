@@ -11,4 +11,6 @@ public interface UsuarioService {
 	public boolean validarCorreo(String email);
 	public boolean validarInicioSession(String email, String password);
 	public Usuario buscarUsuarioPorCorreo(String email);
+	public Usuario buscarUsuarioPorId(int id);
+	public void modificarUsuario(Usuario usuario);
 }

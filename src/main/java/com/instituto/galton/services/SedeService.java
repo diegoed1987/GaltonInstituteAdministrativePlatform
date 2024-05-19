@@ -5,4 +5,5 @@ import com.instituto.galton.models.Sede;
 public interface SedeService {
 	
 	public Iterable<Sede> getSedes();
+	public Sede getSede(String codigoSede);
 }

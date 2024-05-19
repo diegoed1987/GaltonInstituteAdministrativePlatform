@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+</head>
+<body>
+	<div class="crearProgramaContent" th:fragment="crearProgramaForm">
+		<form class="row g-3" th:action="@{/programa/crearPrograma}" th:object="${crearProgramaDTO}" method="post" id="crearProgramaForm">
+			<div class="col-md-8">
+			   	<label for="nombrePrograma" class="form-label">Nombre Programa *</label>
+			   	<input type="text" class="form-control" id="nombrePrograma" name="nombrePrograma">
+			</div>
+			<div class="col-md-4">
+			   	<label for="nombreCortoPrograma" class="form-label">Nombre Corto Programa *</label>
+			   	<input type="text" class="form-control" id="nombreCortoPrograma" name="nombreCortoPrograma">
+			</div>
+			<div class="col-md-4">
+			   	<label for="estadoPrograma" class="form-label">Estado Programa*</label>
+			   	<select id="estadoPrograma" class="form-select" name="estadoPrograma">
+		     		<option value="">Seleccione...</option>
+		     		<option value="I">Inactivo</option>
+		     		<option value="A">Activo</option>
+		  		</select>
+			</div>
+			<div class="col-12" id="registrarProgramaButtons">
+			   	<button type="submit" class="btn btn-primary">Registrar Programa</button>
+			   	<button type="button" class="btn btn-primary" onclick="limpiarFormularioPrograma()">Limpiar Formulario</button>
+			</div>
+		</form>
+	</div>
+</body>
+</html>

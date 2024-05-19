@@ -17,4 +17,9 @@ public class SedeServiceImp implements SedeService{
 		return sedeRepository.findAll();
 	}
 
+	@Override
+	public Sede getSede(String codigoSede) {
+		return sedeRepository.findByCodigoSede(codigoSede);
+	}
+
 }

@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+  </head>
+  <body>
+  		<div th:fragment="actualizaSedeForm">
+			<form class="row g-3" id="actualizaSedeForm1" name="actualizarForm" th:action="@{/sede/modificarSede}" th:object="${actualizarSedeDTO}" method="post">
+<!-- 			<form class="row g-3" id="actualizaUsuarioForm1" name="actualizarForm" action="#" method="post" th:onsubmit="actualizarUsuario2(); return false;"> -->
+				<div class="col-md-4">
+				   	<label for="actualizarNombreSede" class="form-label">Nombre Sede *</label>
+				   	<input type="text" class="form-control" id="actualizarNombreSede" name="nombreSede">
+				</div>
+				<div class="col-md-8">
+				   	<label for="actualizarDireccionSede" class="form-label">Dirección Sede *</label>
+				   	<input type="text" class="form-control" id="actualizarDireccionSede" name="direccionSede">
+				</div>
+				<div class="col-md-6">
+				   	<label for="actualizarDepartamentoSede" class="form-label">Departamento Sede*</label>
+				   	<select id="actualizarDepartamentoSede" class="form-select" name="departamentoSede">
+				     		<option value="">Seleccione...</option>
+	<!-- 			     		<option th:each="item : ${sedes}" th:value="${item.codigoSede}" th:text="${item.nombreSede}"></option> -->
+				  		</select>
+				</div>
+				<div class="col-md-6">
+				   	<label for="actualizarMunicipioSede" class="form-label">Municipio Sede*</label>
+				   	<select id="actualizarMunicipioSede" class="form-select" name="municipioSede">
+				     		<option value="">Seleccione...</option>
+	<!-- 			     		<option th:each="item : ${sedes}" th:value="${item.codigoSede}" th:text="${item.nombreSede}"></option> -->
+				  		</select>
+				</div>
+				<div class="col-md-4">
+				   	<label for="actualizarTelefonoSede" class="form-label">Teléfono *</label>
+				   	<input type="text" class="form-control" id="actualizarTelefonoSede" name="telefonoSede">
+				</div>
+				<input type="hidden" id="actualizarCodigoSede" name="codigoSede">
+				<div class="col-12" id="actualizarSedeButtons">
+				   	<button type="submit" class="btn btn-primary">Modificar Sede</button>
+				   	<button type="button" class="btn btn-primary" onclick="cerrarActualizarSedeModal()">Cancelar</button>
+				</div>
+			</form>
+  		</div>
+  </body>
+</html>

@@ -4,20 +4,16 @@
 	--card-icon-hover-color: #FFFFFF;
 }
 
-section{
-	height: 100%;
-}
-
 .containerContabilidad{
 	display: grid;
-	grid-template-columns: repeat(3, 200px);
-	grid-template-rows: 2;
-	/*justify-content: center;*/
 	row-gap: 30px;
-	column-gap: 150px;
-	/*margin-left: -100px;*/
-	margin-left: 80px;
 	padding-top: 100px;
+	place-items: center;
+	margin: 0 auto;
+	max-height: 100%;
+	overflow: auto;
+	padding-bottom: 5%;
+	
 }
 
 .cardContabilidad{
@@ -55,6 +51,14 @@ section{
 	color: var(--card-icon-hover-color) !important;
 }
 
+@media (min-width: 850px) {
+  .containerContabilidad { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (min-width: 1200px) {
+  .containerContabilidad { grid-template-columns: repeat(3, 1fr); }
+}
+
 /*-------------------------------------- MODAL ---------------------------------------------------*/
 
 .modal {
@@ -67,17 +71,27 @@ section{
 	background-color: rgb(0,0,0);
 	background-color: rgba(0,0,0,0.4);
 	animation:fadein .5s;
-	padding-left: 200px;
+	padding-left: 15%;
 }
 
-.modal-content1 {
+.modalFactura-content {
 	background-color: #FFFFFF;
 	margin: 15% auto;
-	/*padding: 25px;*/
+	padding: 2%;
 	width: 60%;
 	border-radius: 5px;
-	margin-left: 300px;
+	margin-left: 22%;
 	margin-top: 2%;
+}
+
+.modalEgreso-content {
+	background-color: #FFFFFF;
+	margin: 15% auto;
+	padding: 2%;
+	width: 60%;
+	border-radius: 5px;
+	margin-left: 22%;
+	margin-top: 0%;
 }
 
 .text-modal{

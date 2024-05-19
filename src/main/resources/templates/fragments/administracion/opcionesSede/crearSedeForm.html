@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+</head>
+<body>
+	<div class="crearSedeContent" th:fragment="crearSedeForm">
+		<form class="row g-3" th:action="@{/crearSede}" th:object="${crearSedeDTO}" method="post" id="crearSedeForm">
+			<div class="col-md-4">
+			   	<label for="nombreSede" class="form-label">Nombre Sede *</label>
+			   	<input type="text" class="form-control" id="nombreSede" name="nombreSede">
+			</div>
+			<div class="col-md-8">
+			   	<label for="direccionSede" class="form-label">Dirección Sede *</label>
+			   	<input type="text" class="form-control" id="direccionSede" name="direccionSede">
+			</div>
+			<div class="col-md-6">
+			   	<label for="departamentoSede" class="form-label">Departamento Sede*</label>
+			   	<select id="departamentoSede" class="form-select" name="departamentoSede">
+			     		<option value="">Seleccione...</option>
+<!-- 			     		<option th:each="item : ${sedes}" th:value="${item.codigoSede}" th:text="${item.nombreSede}"></option> -->
+			  		</select>
+			</div>
+			<div class="col-md-6">
+			   	<label for="municipioSede" class="form-label">Municipio Sede*</label>
+			   	<select id="municipioSede" class="form-select" name="municipioSede">
+			     		<option value="">Seleccione...</option>
+<!-- 			     		<option th:each="item : ${sedes}" th:value="${item.codigoSede}" th:text="${item.nombreSede}"></option> -->
+			  		</select>
+			</div>
+			<div class="col-md-4">
+			   	<label for="telefonoSede" class="form-label">Teléfono *</label>
+			   	<input type="text" class="form-control" id="telefonoSede" name="telefonoSede">
+			</div>
+			<div class="col-12" id="registrarSedeButtons">
+			   	<button type="submit" class="btn btn-primary">Registrar Sede</button>
+			   	<button type="button" class="btn btn-primary" onclick="limpiarFormModalSede()">Limpiar Formulario</button>
+			</div>
+		</form>
+	</div>
+</body>
+</html>

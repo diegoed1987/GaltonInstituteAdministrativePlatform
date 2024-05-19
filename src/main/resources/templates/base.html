@@ -22,7 +22,7 @@
 <body>
 	<div class="container-fluid">
     	<div class="row2">
-	        <div class="d-flex flex-column flex-shrink-0 p-3 bg-light" style="width: 280px;" id="side-bar">
+	        <div class="d-flex flex-column flex-shrink-0 p-3 bg-light" id="side-bar">
 	        	<div class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
 	        		<img th:src="@{/images/escudo_galton.webp}" alt="logo" class="escudo-logo">
 			    	<span class="fs-4" id="side-bar-title">Instituto Galton</span>
@@ -43,7 +43,7 @@
 			        </li>
 			        <li>
 				        <a href="#" class="nav-link2">
-				        	<i class="bi bi-journals" id="estudiantes"></i>
+				        	<i class="bi bi-book" id="estudiantes"></i>
 				        	Estudiantes
 				        </a>
 			        </li>
@@ -74,14 +74,19 @@
 			            <strong id="profile-name">Diego Erazo</strong>
 		            </a>
 			        <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
-				        <li><a class="dropdown-item" href="/login" id="sign-out-option">Sign out</a></li>
+				        <li><a class="dropdown-item" href="/logout" id="sign-out-option">Sign out</a></li>
 			        </ul>
 			    </div>
 			</div>
 	
-	        <div class="col-sm p-3 min-vh-100 back-content">
+	        <div class="min-vh-100 back-content">
 	        	<div th:replace="${content}"></div>
 	        </div>
+		</div>
+	</div>
+	
+	<div id="spinnerContainer">
+		<div id="spinner" class="spinner-border text-primary" role="status">
 		</div>
 	</div>
 	

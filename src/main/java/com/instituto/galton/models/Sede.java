@@ -18,11 +18,14 @@ public class Sede {
 	@Column(name = "NOMBRE_SEDE")
 	private String nombreSede;
 	
-	@Column(name = "UBICACION_SEDE")
-	private String ubicacionSede;
-	
 	@Column(name = "DIRECCION_SEDE")
 	private String direccionSede;
+	
+	@Column(name = "DEPARTAMENTO_SEDE")
+	private int departamentoSede;
+	
+	@Column(name = "MUNICIPIO_SEDE")
+	private int municipioSede;
 	
 	@Column(name = "TELEFONO_SEDE")
 	private String telefonoSede;
@@ -36,68 +39,89 @@ public class Sede {
 	public Sede() {
 		super();
 	}
-	
-	public Sede(String codigoSede, String nombreSede, String ubicacionSede, String direccionSede, String telefonoSede,
-			Date fechaCreacion, Date fechaModificacion) {
+
+	public Sede(String codigoSede, String nombreSede, String direccionSede, int departamentoSede, int municipioSede,
+			String telefonoSede, Date fechaCreacion, Date fechaModificacion) {
 		super();
 		this.codigoSede = codigoSede;
 		this.nombreSede = nombreSede;
-		this.ubicacionSede = ubicacionSede;
 		this.direccionSede = direccionSede;
+		this.departamentoSede = departamentoSede;
+		this.municipioSede = municipioSede;
 		this.telefonoSede = telefonoSede;
 		this.fechaCreacion = fechaCreacion;
 		this.fechaModificacion = fechaModificacion;
 	}
-	
+
 	public String getCodigoSede() {
 		return codigoSede;
 	}
+
 	public void setCodigoSede(String codigoSede) {
 		this.codigoSede = codigoSede;
 	}
+
 	public String getNombreSede() {
 		return nombreSede;
 	}
+
 	public void setNombreSede(String nombreSede) {
 		this.nombreSede = nombreSede;
 	}
-	public String getUbicacionSede() {
-		return ubicacionSede;
-	}
-	public void setUbicacionSede(String ubicacionSede) {
-		this.ubicacionSede = ubicacionSede;
-	}
+
 	public String getDireccionSede() {
 		return direccionSede;
 	}
+
 	public void setDireccionSede(String direccionSede) {
 		this.direccionSede = direccionSede;
 	}
+
+	public int getDepartamentoSede() {
+		return departamentoSede;
+	}
+
+	public void setDepartamentoSede(int departamentoSede) {
+		this.departamentoSede = departamentoSede;
+	}
+
+	public int getMunicipioSede() {
+		return municipioSede;
+	}
+
+	public void setMunicipioSede(int municipioSede) {
+		this.municipioSede = municipioSede;
+	}
+
 	public String getTelefonoSede() {
 		return telefonoSede;
 	}
+
 	public void setTelefonoSede(String telefonoSede) {
 		this.telefonoSede = telefonoSede;
 	}
+
 	public Date getFechaCreacion() {
 		return fechaCreacion;
 	}
+
 	public void setFechaCreacion(Date fechaCreacion) {
 		this.fechaCreacion = fechaCreacion;
 	}
+
 	public Date getFechaModificacion() {
 		return fechaModificacion;
 	}
+
 	public void setFechaModificacion(Date fechaModificacion) {
 		this.fechaModificacion = fechaModificacion;
 	}
-	
+
 	@Override
 	public String toString() {
-		return "Sede [codigoSede=" + codigoSede + ", nombreSede=" + nombreSede + ", ubicacionSede=" + ubicacionSede
-				+ ", direccionSede=" + direccionSede + ", telefonoSede=" + telefonoSede + ", fechaCreacion="
-				+ fechaCreacion + ", fechaModificacion=" + fechaModificacion + "]";
+		return "Sede [codigoSede=" + codigoSede + ", nombreSede=" + nombreSede + ", direccionSede=" + direccionSede
+				+ ", departamentoSede=" + departamentoSede + ", municipioSede=" + municipioSede + ", telefonoSede="
+				+ telefonoSede + ", fechaCreacion=" + fechaCreacion + ", fechaModificacion=" + fechaModificacion + "]";
 	}
-	
-	
+
 }

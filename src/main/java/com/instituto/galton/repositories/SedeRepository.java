@@ -9,4 +9,5 @@ import com.instituto.galton.models.Sede;
 public interface SedeRepository extends JpaRepository<Sede, String>{
 	
 	public List<Sede> findAll();
+	public Sede findByCodigoSede(String codigoSede);
 }

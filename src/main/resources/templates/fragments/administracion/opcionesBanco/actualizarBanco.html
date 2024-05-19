@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+  </head>
+  <body>
+  		<div th:fragment="actualizaBancoForm">
+			<form class="row g-3" id="actualizaBancoForm1" name="actualizarBancoForm" th:action="@{/banco/modificarBanco}" th:object="${actualizarBancoDTO}" method="post">
+<!-- 			<form class="row g-3" id="actualizaUsuarioForm1" name="actualizarForm" action="#" method="post" th:onsubmit="actualizarUsuario2(); return false;"> -->
+				<div class="col-md-4">
+				   	<label for="actualizarNombreBanco" class="form-label">Nombre Banco *</label>
+				   	<input type="text" class="form-control" id="actualizarNombreBanco" name="nombreBanco">
+				</div>
+				<div class="col-md-6">
+				   	<label for="actualizarEstadoBanco" class="form-label">Estado *</label>
+				   	<select id="actualizarEstadoBanco" class="form-select" name="estadoBanco">
+			     		<option value="">Seleccione...</option>
+			     		<option value="I">Inactivo</option>
+			     		<option value="A">Activo</option>
+			  		</select>
+				</div>
+				<input type="hidden" id="actualizarIdBanco" name="id">
+				<div class="col-12" id="actualizarBancoButtons">
+				   	<button type="submit" class="btn btn-primary">Modificar Banco</button>
+				   	<button type="button" class="btn btn-primary" onclick="cerrarEditarBancoModal()">Cancelar</button>
+				</div>
+			</form>
+  		</div>
+  </body>
+</html>

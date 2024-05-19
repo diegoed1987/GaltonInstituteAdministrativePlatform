@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+  </head>
+  <body>
+  		<div th:fragment="actualizaProgramaForm">
+			<form class="row g-3" id="actualizaProgramaForm1" name="actualizarProgramaForm" th:action="@{/programa/modificarPrograma}" th:object="${actualizarProgramaDTO}" method="post">
+<!-- 			<form class="row g-3" id="actualizaUsuarioForm1" name="actualizarForm" action="#" method="post" th:onsubmit="actualizarUsuario2(); return false;"> -->
+				<div class="col-md-4">
+				   	<label for="actualizarNombrePrograma" class="form-label">Nombre Programa *</label>
+				   	<input type="text" class="form-control" id="actualizarNombrePrograma" name="nombrePrograma">
+				</div>
+				<div class="col-md-8">
+				   	<label for="actualizarNombreCortoPrograma" class="form-label">Nombre Corto Programa *</label>
+				   	<input type="text" class="form-control" id="actualizarNombreCortoPrograma" name="nombreCortoPrograma">
+				</div>
+				<div class="col-md-6">
+				   	<label for="actualizarEstadoPrograma" class="form-label">Estado *</label>
+				   	<select id="actualizarEstadoPrograma" class="form-select" name="estadoPrograma">
+			     		<option value="">Seleccione...</option>
+			     		<option value="I">Inactivo</option>
+			     		<option value="A">Activo</option>
+			  		</select>
+				</div>
+				<input type="hidden" id="actualizarIdPrograma" name="idPrograma">
+				<div class="col-12" id="actualizarProgramaButtons">
+				   	<button type="submit" class="btn btn-primary">Modificar Programa</button>
+				   	<button type="button" class="btn btn-primary" onclick="cerrarEditarProgramaModal()">Cancelar</button>
+				</div>
+			</form>
+  		</div>
+  </body>
+</html>

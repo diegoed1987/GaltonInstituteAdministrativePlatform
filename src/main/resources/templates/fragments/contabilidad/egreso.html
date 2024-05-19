@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+</head>
+<body>
+	<div class="crearSedeContent" th:fragment="generarEgresoForm">
+		<div>
+			<div>
+				<h3>Generar Nuevo Egreso</h3>
+				<p><span th:text="${maxIdEgreso}"></span></p>
+			</div>
+		</div>
+		<form class="row g-3" th:action="@{/generarEgreso}" th:object="${generarEgresoDTO}" method="post" id="generarEgresoForm" th:onsubmit="cerrarModalEgreso()">
+			<div class="col-md-4">
+		    	<label for="idBeneficiario" class="form-label">Documento Beneficiario *</label>
+		    	<input type="text" class="form-control" id="idBeneficiario" name="idBeneficiario" th:field="*{idBeneficiario}">
+			</div>
+			<div class="col-md-8">
+		    	<label for="nombreBeneficiario" class="form-label">Nombre Beneficiario *</label>
+		    	<input type="text" class="form-control" id="nombreBeneficiario" name="nombreBeneficiario" th:field="*{nombreBeneficiario}">
+			</div>
+			<div class="col-6">
+		    	<label for="direccionBeneficiario" class="form-label">Dirección</label>
+		    	<input type="text" class="form-control" id="direccionBeneficiario" name="direccionBeneficiario" th:field="*{direccionBeneficiario}">
+			</div>
+			<div class="col-6">
+		    	<label for="telefonoBeneficiario" class="form-label">Teléfono</label>
+		    	<input type="text" class="form-control" id="telefonoBeneficiario" name="telefonoBeneficiario" th:field="*{telefonoBeneficiario}">
+			</div>
+			<div class="col-6">
+		    	<label for="ciudadBeneficiario" class="form-label">Ciudad</label>
+		    	<input type="text" class="form-control" id="ciudadBeneficiario" name="ciudadBeneficiario" th:field="*{ciudadBeneficiario}">
+			</div>
+			<div class="col-md-3">
+		    	<label for="medioPago" class="form-label">Medio de Pago *</label>
+		    	<select id="medioPago" class="form-select" name="medioPago" th:field="*{medioPago}">
+		      		<option value="">Seleccione...</option>
+		      		<option value="Efectivo">Efectivo</option>
+		      		<option value="Transferencia">Transferencia</option>
+		      		<option value="Consignacion">Consignacion</option>
+		   		</select>
+			</div>
+			<div class="col-md-3">
+		    	<label for="idBanco" class="form-label">Banco</label>
+		    	<select id="idBanco" class="form-select" name="idBanco" th:field="*{idBanco}">
+		    		<option value="">Seleccione...</option>
+		      		<option th:each="item : ${bancos}" th:value="${item.id}" th:text="${item.nombreBanco}"></option>
+		   		</select>
+			</div>
+			<div class="col-md-4">
+		    	<label for="valorEgreso" class="form-label">Valor</label>
+		    	<input type="text" class="form-control" id="valorEgreso" name="valorEgreso" th:field="*{valorEgreso}">
+			</div>
+			<div class="col-md-8">
+		    	<label for="valorLetra" class="form-label">Valor letras</label>
+		    	<input type="text" class="form-control" id="valorLetra" name="valorLetra" th:field="*{valorLetra}">
+			</div>
+			<div class="col-md-12">
+		    	<label for="descripcionEgreso" class="form-label">Descripción</label>
+		    	<input type="text" class="form-control" id="descripcionEgreso" name="descripcionEgreso" th:field="*{descripcionEgreso}">
+			</div>
+			<div class="col-md-12">
+		    	<label for="observacionesEgreso" class="form-label">Observaciones</label>
+		    	<input type="text" class="form-control" id="observacionesEgreso" name="observacionesEgreso" th:field="*{observacionesEgreso}">
+			</div>
+			
+			<div class="col-12" id="generarEgresoButtons">
+		    	<button type="submit" class="btn btn-primary" onclick="cerrarModalEgreso()">Generar Egreso</button>
+		    	<button type="button" class="btn btn-primary" onclick="cancelarModalEgreso()">Cancelar</button>
+			</div>
+		</form>
+	</div>
+</body>
+</html>

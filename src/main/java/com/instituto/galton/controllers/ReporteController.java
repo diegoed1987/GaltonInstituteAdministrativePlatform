@@ -1,26 +1,20 @@
 package com.instituto.galton.controllers;
 
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.instituto.galton.dtos.CrearUsuarioDTO;
+import com.instituto.galton.dtos.ActualizarUsuarioDTO;
 import com.instituto.galton.dtos.GenerarEgresoDTO;
 import com.instituto.galton.dtos.GenerarFacturaDTO;
-import com.instituto.galton.helpers.Alert;
 import com.instituto.galton.models.Banco;
 import com.instituto.galton.models.Egresos;
 import com.instituto.galton.models.Factura;
@@ -28,7 +22,9 @@ import com.instituto.galton.models.Periodo;
 import com.instituto.galton.models.Programa;
 import com.instituto.galton.models.RolUsuario;
 import com.instituto.galton.models.Sede;
+import com.instituto.galton.models.Usuario;
 import com.instituto.galton.services.BancoService;
+import com.instituto.galton.services.DetalleUsuarioService;
 import com.instituto.galton.services.EgresoService;
 import com.instituto.galton.services.FacturaService;
 import com.instituto.galton.services.JasperReportsService;
@@ -36,12 +32,12 @@ import com.instituto.galton.services.PeriodoService;
 import com.instituto.galton.services.ProgramaService;
 import com.instituto.galton.services.RolUsuarioService;
 import com.instituto.galton.services.SedeService;
+import com.instituto.galton.services.UsuarioService;
 
 import jakarta.servlet.http.HttpServletResponse;
 
 @Controller
-@RequestMapping("/")
-public class UserController {
+public class ReporteController {
 	
 	@Autowired
 	private JasperReportsService jasperReportService;
@@ -67,6 +63,12 @@ public class UserController {
 	@Autowired
 	private SedeService sedeService;
 	
+	@Autowired
+	private UsuarioService usuarioService;
+	
+	@Autowired
+	private DetalleUsuarioService detalleUsuarioService;
+	
 	private String numFactura = "";
 	private String numEgreso = "";
 	private Iterable<Banco> bancos = null;
@@ -75,63 +77,12 @@ public class UserController {
 	private String datePattern = "dd/MM/yyyy";
 	private Iterable<RolUsuario> rolesUsuario = null;
 	private Iterable<Sede> sedes = null;
-	
-	@GetMapping("/")
-	public String paginaAdministrador() {
-		return "inicio";
-	}
+	private Iterable<Usuario> listaUsuarios = null;
+	private ActualizarUsuarioDTO actualizarUsuarioDTO = null;
 	
 	@GetMapping("/reportes")
 	public String reportesPage() {
 		return "reportes";
-	}
-	
-	@GetMapping("/administracion")
-	public String administracion(Model model) {
-		CrearUsuarioDTO crearUsuarioDTO = new CrearUsuarioDTO();
-		model.addAttribute("crearUsuarioDTO", crearUsuarioDTO);
-		rolesUsuario = rolUsuarioService.getRolesUsuarios();
-		sedes = sedeService.getSedes();
-		model.addAttribute("rolesUsuario", rolesUsuario);
-		model.addAttribute("sedes", sedes);
-		return "administracion";
-	}
-	
-	@PostMapping("/crearUsuario")
-	public String creaUsuarioModal(@ModelAttribute("crearUsuarioDTO") CrearUsuarioDTO crearUsuarioDTO, Model model) {
-		System.out.println("crearUsuarioDTO.getDocumentoUsuario(): "+crearUsuarioDTO.getDocumentoUsuario());
-		System.out.println("crearUsuarioDTO.getDireccionUsuario(): "+crearUsuarioDTO.getDireccionUsuario());
-		System.out.println("crearUsuarioDTO.getEmailUsuario(): "+crearUsuarioDTO.getEmailUsuario());
-		System.out.println("crearUsuarioDTO.getEstadoUsuario(): "+crearUsuarioDTO.getEstadoUsuario());
-		System.out.println("crearUsuarioDTO.getFechaNacimiento(): "+crearUsuarioDTO.getFechaNacimiento());
-		System.out.println("crearUsuarioDTO.getNombreUsuario(): "+crearUsuarioDTO.getNombreUsuario());
-		System.out.println("crearUsuarioDTO.getPasswordUsuario(): "+crearUsuarioDTO.getPasswordUsuario());
-		System.out.println("crearUsuarioDTO.getRolUsuario(): "+crearUsuarioDTO.getRolUsuario());
-		System.out.println("crearUsuarioDTO.getSedeUsuario(): "+crearUsuarioDTO.getSedeUsuario());
-		System.out.println("crearUsuarioDTO.getTelefonoUsuario(): "+crearUsuarioDTO.getTelefonoUsuario());
-		model.addAttribute("mensaje", "registro exitoso desde crearUsuario");
-		return "redirect:/administracion";
-	}
-	
-	@GetMapping("/contabilidad")
-	public String getContabilidad(Model model) {
-		
-		bancos = bancoService.getBancos();
-		programas = programaService.getProgramas();
-		periodos = periodoService.getPeriodos();
-		numFactura = facturaService.getMaxFacturaId();
-		numEgreso = egresoService.getMaxEgresoId();
-		String numeroComprobante = "Egreso #"+ numEgreso;
-		String numeroFactura = "Factura #"+ numFactura;
-		
-		model.addAttribute("generarFacturaDTO", new GenerarFacturaDTO());
-		model.addAttribute("generarEgresoDTO", new GenerarEgresoDTO());
-		model.addAttribute("bancos",bancos);
-		model.addAttribute("programas",programas);
-		model.addAttribute("periodos",periodos);
-		model.addAttribute("maxId", numeroFactura);
-		model.addAttribute("maxIdEgreso", numeroComprobante);
-		return "contabilidad";
 	}
 	
 	@PostMapping("/generarFactura")
@@ -266,23 +217,4 @@ public class UserController {
         
         return ResponseEntity.ok(mensaje);
 	}
-	
-	@GetMapping("/profesores")
-	public String getProfesores() {
-		return "profesores";
-	}
-	
-//	@GetMapping(value = "/logo", produces = MediaType.IMAGE_PNG_VALUE)
-//	public void getLogoImagen(HttpServletResponse response) throws IOException {
-//		Path path = Paths.get("src/main/resources/static/images/logo_reportes.png");
-//		byte[] imageByte = Files.readAllBytes(path);
-//        try {
-//            response.setContentType(MediaType.IMAGE_PNG_VALUE);
-//            response.getOutputStream().write(imageByte);
-//        }catch (Exception e) {
-//            e.printStackTrace();
-//            response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
-//            response.getWriter().write("Error generating report: " + e.getMessage());
-//        }
-//	}
 }

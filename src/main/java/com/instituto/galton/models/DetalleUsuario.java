@@ -22,7 +22,7 @@ public class DetalleUsuario {
 	private int idUsuario;
 	
 	@Column(name = "DOCUMENTO")
-	private int documento;
+	private Long documento;
 	
 	@Column(name = "NOMBRE")
 	private String nombre;
@@ -34,7 +34,7 @@ public class DetalleUsuario {
 	private String direccion;
 	
 	@Column(name = "TELEFONO")
-	private int telefono;
+	private Long telefono;
 	
 	@Column(name = "FECHA_CREACION")
 	private Date fechaCreacion;
@@ -58,11 +58,11 @@ public class DetalleUsuario {
 		this.idUsuario = idUsuario;
 	}
 
-	public int getDocumento() {
+	public Long getDocumento() {
 		return documento;
 	}
 
-	public void setDocumento(int documento) {
+	public void setDocumento(Long documento) {
 		this.documento = documento;
 	}
 
@@ -90,11 +90,11 @@ public class DetalleUsuario {
 		this.direccion = direccion;
 	}
 
-	public int getTelefono() {
+	public Long getTelefono() {
 		return telefono;
 	}
 
-	public void setTelefono(int telefono) {
+	public void setTelefono(Long telefono) {
 		this.telefono = telefono;
 	}
 

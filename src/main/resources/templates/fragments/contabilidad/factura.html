@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+</head>
+<body>
+	<div class="crearSedeContent" th:fragment="generarFacturaForm">
+		<div>
+			<div>
+				<h3>Generar Nueva Factura</h3>
+				<p><span th:text="${maxId}"></span></p>
+			</div>
+		</div>
+		<form class="row g-3" th:action="@{/generarFactura}" th:object="${generarFacturaDTO}" method="post" id="generarFacturaForm" th:onsubmit="cerrarModalFactura()">
+			<div class="col-md-4">
+		    	<label for="documentoPagador" class="form-label">Documento Pagador *</label>
+		    	<input type="text" class="form-control" id="documentoPagador" name="documentoPagador" th:field="*{documentoPagador}">
+			</div>
+			<div class="col-md-8">
+		    	<label for="nombrePagador" class="form-label">Nombre Pagador *</label>
+		    	<input type="text" class="form-control" id="nombrePagador" name="nombrePagador" th:field="*{nombrePagador}">
+			</div>
+			<div class="col-md-4">
+		    	<label for="periodo" class="form-label">Periodos</label>
+		    	<select id="periodo" class="form-select" name="periodo" th:field="*{periodo}">
+		      		<option value="">Seleccione...</option>
+		      		<option th:each="item : ${periodos}" th:value="${item.id}" th:text="${item.periodo}"></option>
+		   		</select>
+			</div>
+			<div class="col-md-8">
+		    	<label for="programa" class="form-label">Programas</label>
+		    	<select id="programa" class="form-select" name="programa" th:field="*{programa}">
+		      		<option value="">Seleccione...</option>
+		      		<option th:each="item : ${programas}" th:value="${item.idPrograma}" th:text="${item.nombrePrograma}"></option>
+		   		</select>
+			</div>
+			<div class="col-6">
+		    	<label for="concepto" class="form-label">Concepto *</label>
+		    	<input type="text" class="form-control" id="concepto" name="concepto" th:field="*{concepto}">
+			</div>
+			<div class="col-6">
+		    	<label for="valorRecaudado" class="form-label">Valor Recaudado *</label>
+		    	<input type="text" class="form-control" id="valorRecaudado" name="valorRecaudado" th:field="*{valorRecaudado}">
+			</div>
+			<div class="col-6">
+		    	<label for="valorLetra" class="form-label">Valor Letra *</label>
+		    	<input type="text" class="form-control" id="valorLetra" name="valorLetra" th:field="*{valorLetra}">
+			</div>
+			<div class="col-md-3">
+		    	<label for="medioPago" class="form-label">Medio de Pago *</label>
+		    	<select id="medioPago" class="form-select" name="medioPago" th:field="*{medioPago}">
+		      		<option value="">Seleccione...</option>
+		      		<option value="Efectivo">Efectivo</option>
+		      		<option value="Transferencia">Transferencia</option>
+		      		<option value="Consignacion">Consignacion</option>
+		   		</select>
+			</div>
+			<div class="col-md-3">
+		    	<label for="banco" class="form-label">Banco</label>
+		    	<select id="banco" class="form-select" name="banco" th:field="*{banco}">
+		    		<option value="">Seleccione...</option>
+		      		<option th:each="item : ${bancos}" th:value="${item.id}" th:text="${item.nombreBanco}"></option>
+		   		</select>
+			</div>
+			<div class="col-md-12">
+		    	<label for="observaciones" class="form-label">Observaciones</label>
+		    	<input type="text" class="form-control" id="observaciones" name="observaciones" th:field="*{observaciones}">
+			</div>
+			
+			<div class="col-12" id="generarFacturaButtons">
+		    	<button type="submit" class="btn btn-primary" onclick="cerrarModalFactura()">Generar Factura</button>
+		    	<button type="button" class="btn btn-primary" onclick="cancelarModalFactura()">Cancelar</button>
+			</div>
+		</form>
+	</div>
+</body>
+</html>

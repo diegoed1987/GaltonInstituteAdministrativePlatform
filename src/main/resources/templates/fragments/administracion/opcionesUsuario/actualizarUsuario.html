@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+  </head>
+  <body>
+  		<div th:fragment="actualizaUsuarioForm">
+			<form class="row g-3" id="actualizaUsuarioForm1" name="actualizarForm" th:action="@{/usuario/modificarUsuario}" th:object="${actualizarUsuarioDTO}" method="post">
+<!-- 			<form class="row g-3" id="actualizaUsuarioForm1" name="actualizarForm" action="#" method="post" th:onsubmit="actualizarUsuario2(); return false;"> -->
+				<div class="col-md-4">
+				   	<label for="actualizaDocumentoUsuario" class="form-label">Documento Usuario</label>
+				   	<input type="text" class="form-control" id="actualizaDocumentoUsuario" name="documentoUsuario">
+				</div>
+				<div class="col-md-8">
+				   	<label for="actualizaNombreUsuario" class="form-label">Nombre Usuario</label>
+				   	<input type="text" class="form-control" id="actualizaNombreUsuario" name="nombreUsuario">
+				</div>
+				<div class="col-md-6">
+				   	<label for="actualizaEmailUsuario" class="form-label">Email Usuario</label>
+				   	<input type="text" class="form-control" id="actualizaEmailUsuario" name="emailUsuario">
+				</div>
+				<div class="col-md-6">
+				   	<label for="actualizaPasswordUsuario" class="form-label">Password Usuario</label>
+				   	<input type="text" class="form-control" id="actualizaPasswordUsuario" name="passwordUsuario">
+				</div>
+				<div class="col-md-4">
+				   	<label for="actualizaFechaNacimiento" class="form-label">Fecha Nacimiento</label>
+				   	<input type="date" class="form-control" id="actualizaFechaNacimiento" name="fechaNacimiento">
+				</div>
+				<div class="col-md-4">
+				   	<label for="actualizaRolUsuario" class="form-label">Rol</label>
+				   	<select id="actualizaRolUsuario" class="form-select" name="rolUsuario">
+			     		<option value="">Seleccione...</option>
+			     		<option th:each="item : ${rolesUsuario}" th:value="${item.idRol}" th:text="${item.nombreRol}"></option>
+			  		</select>
+				</div>
+				
+				<div class="col-md-4">
+				   	<label for="actualizaEstadoUsuario" class="form-label">Estado</label>
+				   	<select id="actualizaEstadoUsuario" class="form-select" name="estadoUsuario">
+				     		<option value="">Seleccione...</option>
+				     		<option th:value="A" th:text="Activo"></option>
+				     		<option th:value="I" th:text="Inactivo"></option>
+				  		</select>
+				</div>
+				<div class="col-md-8">
+				   	<label for="actualizaDireccionUsuario" class="form-label">Dirección Usuario</label>
+				   	<input type="text" class="form-control" id="actualizaDireccionUsuario" name="direccionUsuario">
+				</div>
+				<div class="col-md-4">
+				   	<label for="actualizaTelefonoUsuario" class="form-label">Teléfono Usuario</label>
+				   	<input type="text" class="form-control" id="actualizaTelefonoUsuario" name="telefonoUsuario">
+				</div>
+				<div class="col-md-4">
+				   	<label for="actualizaSedeUsuario" class="form-label">Sede</label>
+				   	<select id="actualizaSedeUsuario" class="form-select" name="sedeUsuario">
+			     		<option value="">Seleccione...</option>
+			     		<option th:each="item : ${sedes}" th:value="${item.codigoSede}" th:text="${item.nombreSede}"></option>
+			  		</select>
+				</div>
+				<input type="hidden" id="actualizaIdUsuario" name="idUsuario">
+				<div class="col-12" id="actualizarUsuarioButtons">
+				   	<button type="submit" class="btn btn-primary">Modificar Usuario</button>
+				   	<button type="button" class="btn btn-primary" onclick="cerrarActualizarModal()">Cancelar</button>
+				</div>
+			</form>
+  		</div>
+  </body>
+</html>

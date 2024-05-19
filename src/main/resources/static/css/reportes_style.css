@@ -1,17 +1,13 @@
-section{
-	height: 100%;
-}
 
-.container1{
+.reportesContainer{
 	display: grid;
-	grid-template-columns: repeat(3, 200px);
-	grid-template-rows: 2;
-	/*justify-content: center;*/
-	row-gap: 20px;
-	column-gap: 200px;
-	/*margin-left: -100px;*/
-	margin-left: 20px;
+	row-gap: 30px;
 	padding-top: 100px;
+	place-items: center;
+	margin: 0 auto;
+	max-height: 100%;
+	overflow: auto;
+	padding-bottom: 5%;
 }
 
 .card1{
@@ -24,4 +20,12 @@ section{
 
 .card1:hover{
 	background-color: #808080;
+}
+
+@media (min-width: 850px) {
+  .reportesContainer { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (min-width: 1200px) {
+  .reportesContainer { grid-template-columns: repeat(3, 1fr); }
 }

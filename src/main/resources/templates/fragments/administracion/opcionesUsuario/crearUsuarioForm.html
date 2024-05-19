@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+</head>
+<body>
+	<div class="crearUsuarioContent" th:fragment="crearUsuarioForm">
+		<form class="row g-3" th:action="@{/crearUsuario}" th:object="${crearUsuarioDTO}" method="post" id="crearUsuarioForm">
+			<div class="col-md-4">
+			   	<label for="documentoUsuario" class="form-label">Documento Usuario *</label>
+			   	<input type="text" class="form-control" id="documentoUsuario" name="documentoUsuario">
+			</div>
+			<div class="col-md-8">
+			   	<label for="nombreUsuario" class="form-label">Nombre Usuario *</label>
+			   	<input type="text" class="form-control" id="nombreUsuario" name="nombreUsuario">
+			</div>
+			<div class="col-md-6">
+			   	<label for="emailUsuario" class="form-label">Email Usuario *</label>
+			   	<input type="text" class="form-control" id="emailUsuario" name="emailUsuario">
+			</div>
+			<div class="col-md-6">
+			   	<label for="passwordUsuario" class="form-label">Password Usuario *</label>
+			   	<input type="password" class="form-control" id="passwordUsuario" name="passwordUsuario">
+			</div>
+			<div class="col-md-4">
+			   	<label for="fechaNacimiento" class="form-label">Fecha Nacimiento</label>
+			   	<input type="date" class="form-control" id="fechaNacimiento" name="fechaNacimiento">
+			</div>
+			<div class="col-md-4">
+			   	<label for="rolUsuario" class="form-label">Rol *</label>
+			   	<select id="rolUsuario" class="form-select" name="rolUsuario">
+			     		<option value="">Seleccione...</option>
+			     		<option th:each="item : ${rolesUsuario}" th:value="${item.idRol}" th:text="${item.nombreRol}"></option>
+			  		</select>
+			</div>
+			
+			<div class="col-md-4">
+			   	<label for="estadoUsuario" class="form-label">Estado *</label>
+			   	<select id="estadoUsuario" class="form-select" name="estadoUsuario">
+			     		<option value="">Seleccione...</option>
+			     		<option th:value="A" th:text="Activo"></option>
+			     		<option th:value="I" th:text="Inactivo"></option>
+			  		</select>
+			</div>
+			<div class="col-md-8">
+			   	<label for="direccionUsuario" class="form-label">Dirección Usuario</label>
+			   	<input type="text" class="form-control" id="direccionUsuario" name="direccionUsuario">
+			</div>
+			<div class="col-md-4">
+			   	<label for="telefonoUsuario" class="form-label">Teléfono Usuario</label>
+			   	<input type="text" class="form-control" id="telefonoUsuario" name="telefonoUsuario">
+			</div>
+			<div class="col-md-4">
+			   	<label for="sedeUsuario" class="form-label">Sede *</label>
+			   	<select id="sedeUsuario" class="form-select" name="sedeUsuario">
+			     		<option value="">Seleccione...</option>
+			     		<option th:each="item : ${sedes}" th:value="${item.codigoSede}" th:text="${item.nombreSede}"></option>
+			  		</select>
+			</div>
+			<div class="col-12" id="registrarUsuarioButtons">
+			   	<button type="submit" class="btn btn-primary">Registrar Usuario</button>
+			   	<button type="button" class="btn btn-primary" onclick="limpiarFormModalUsuario()">Limpiar Formulario</button>
+			</div>
+		</form>
+	</div>
+</body>
+</html>

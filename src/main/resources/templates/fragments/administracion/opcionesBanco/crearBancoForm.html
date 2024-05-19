@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+</head>
+<body>
+	<div class="crearBancoContent" th:fragment="crearBancoForm">
+		<form class="row g-3" th:action="@{/banco/crearBanco}" th:object="${crearBancoDTO}" method="post" id="crearBancoForm">
+			<div class="col-md-8">
+			   	<label for="nombreBanco" class="form-label">Nombre Banco *</label>
+			   	<input type="text" class="form-control" id="nombreBanco" name="nombreBanco">
+			</div>
+			<div class="col-md-4">
+			   	<label for="estadoBanco" class="form-label">Estado Banco*</label>
+			   	<select id="estadoBanco" class="form-select" name="estadoBanco">
+		     		<option value="">Seleccione...</option>
+		     		<option value="I">Inactivo</option>
+		     		<option value="A">Activo</option>
+		  		</select>
+			</div>
+			<div class="col-12" id="registrarBancoButtons">
+			   	<button type="submit" class="btn btn-primary">Registrar Banco</button>
+			   	<button type="button" class="btn btn-primary" onclick="limpiarFormularioBanco()">Limpiar Formulario</button>
+			</div>
+		</form>
+	</div>
+</body>
+</html>

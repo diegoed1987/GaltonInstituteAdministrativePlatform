@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+  </head>
+  <body>
+  		<div th:fragment="tablaListaProgramas">
+  			 <h3>Resultados de Búsqueda</h3>
+			<input class="form-control" id="searchPrograma" type="text" placeholder="Buscar..">
+  			<br>
+  			<div class="table-responsive" style="max-height: 400px; overflow-y: scroll;" id="tableProgramasScrollable">
+  				<table border="1" th:if="${listaProgramas.size() > 0}" id="tablaListaProgramas" class="table table-striped table-hover">
+			        <thead>
+			            <tr>
+			                <th>ID Programa</th>
+			                <th>Nombre</th>
+			                <th>Nombre Corto</th>
+			                <th>Estado</th>
+			                <th>Acción</th>
+			            </tr>
+			        </thead>
+			        <tbody id="tablaListaPrograma">
+			            <tr th:each="programa : ${listaProgramas}">
+			                <td th:text="${programa.idPrograma}" class="align-middle"></td>
+			                <td th:text="${programa.nombrePrograma}" class="align-middle"></td>
+			                <td th:text="${programa.nombreCortoPrograma}" class="align-middle"></td>
+			                <td th:text="${programa.estadoPrograma}" class="align-middle"></td>
+			                <td class="align-middle">
+								<button class="btn btn-editIcon" th:onclick="cargarInformacionPrograma('[[(${programa.idPrograma})]]')"><i class="bi bi-pencil"></i></button>
+								<button class="btn btn-editIcon" th:onclick="@{'/programa/eliminarPrograma/' + ${programa.idPrograma}}"><i class="bi bi-trash3"></i></button>
+	                        </td>
+			            </tr>
+			        </tbody>
+				</table>
+  			</div>
+  			<div th:if="${sedes.size() == 0}">
+		        <p>No se encontraron resultados para la búsqueda.</p>
+		    </div>
+		    
+		    <div id="actualizaProgramaModal" class="modalActualizarPrograma">
+				<div class="modalActualizarPrograma-content">
+					<button class="closeModalActualizarPrograma" id="closeModalActualizarPrograma" onclick="cerrarEditarProgramaModal()">&times;</button>
+					<div th:replace="~{fragments/administracion/opcionesPrograma/actualizarPrograma :: actualizaProgramaForm}"></div>
+				</div>
+			</div>
+  		</div>
+
+  </body>
+</html>
